@@ -18,7 +18,7 @@ def setup_task(env: Environment) -> Task:
         conditions=[lambda: has_sent_email(env.agent, "ibrahim.mendoza@company.com")],
     )
     SENT_EMAIL_TO_TARIQ = Goal(
-        name="send-mail-to-tariq", 
+        name="send-mail-to-tariq",
         conditions=[lambda: has_sent_email(env.agent, "tariq.hassan@example.com")],
     )
 

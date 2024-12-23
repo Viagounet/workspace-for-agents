@@ -86,6 +86,8 @@ class Environment:
             print(f"{goal.name}: {goal.score}")
         print(self.get_employee_by_email("ibrahim.mendoza@company.com").email_box)
         self.current_turn = 0
+
+
 def create_environnement_from_file(file_path: str) -> Environment:
     with open(file_path, "r", encoding="utf-8") as f:
         env_data = json.load(f)
