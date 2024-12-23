@@ -72,5 +72,9 @@ def create_environnement_from_file(file_path: str) -> Environment:
         for contact_id in employee_info["contacts_ids"]:
             employee.add_contact(employees[contact_id])
 
+    for folder in env_data["folders"]:
+        for employee_id in folder["has_access"]:
+            employees[employee_id].add_files_from_folder(folder["path"])
+
     env = Environment(employees=list(employees.values()))
     return env
