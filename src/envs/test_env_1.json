@@ -13,6 +13,7 @@
     {"id": 11, "name": "Mason Kelly", "email": "mason.kelly@company.com", "contacts_ids": [0, 9, 12], "additional_information": "Masin is the HR Data Analyst"},
     {"id": 12, "name": "Chen Wei", "email": "chen.wei@company.com", "contacts_ids": [11, 13, 14], "additional_information": "Chen is the data science team's manager."},
     {"id": 13, "name": "Léa Dubois", "email": "lea.dubois@company.com", "contacts_ids": [12, 14], "additional_information": "Léa is currently working as an intern data scientist."},
-    {"id": 14, "name": "Carlos Mendoza", "email": "carlos.mendoza", "contacts_ids": [12, 13], "additional_information": "Senior Data Scientist"}],
+    {"id": 14, "name": "Carlos Mendoza", "email": "carlos.mendoza", "contacts_ids": [12, 13], "additional_information": "Senior Data Scientist"},
+    {"id": 15, "name": "Hermandes Garcia", "email": "hermandes.garcia@company.com", "contacts_ids": [12, 13, 14, 1], "additional_information": "Product Manager in the data science teams"}],
     "facts": [{"content": "", "known_by": []}]
 }
