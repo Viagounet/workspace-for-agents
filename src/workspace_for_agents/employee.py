@@ -1,6 +1,9 @@
+from dataclasses import dataclass
 from typing import Self
 
+from workspace_for_agents.actions import Action
 from workspace_for_agents.file_system import File, Folder
+
 
 class Employee:
     def __init__(
@@ -18,6 +21,7 @@ class Employee:
         self.known_facts: list[str] = []
         self.folders: list[Folder] = []
         self.files: list[File] = []
+        self.actions: list[Action] = []
 
     def add_contact(self, employee: Self):
         if employee.id in self.contacts_map.keys():
@@ -29,7 +33,7 @@ class Employee:
 
     def add_files_from_folder(self, folder_path: str):
         import os
-        
+
         # Create root folder
         folder_name = os.path.basename(folder_path)
         root_folder = Folder(folder_path, folder_name)

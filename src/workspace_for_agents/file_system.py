@@ -26,21 +26,21 @@ class Folder:
     def tree(self, indent: str = "") -> str:
         """Returns a string representation of the folder structure in tree format"""
         result = [f"{indent}{self.name}/"]
-        
+
         for i, file in enumerate(sorted(self.files, key=lambda f: f.name)):
             is_last_file = (i == len(self.files) - 1) and len(self.subfolders) == 0
             if is_last_file:
                 result.append(f"{indent}└── {file.name}")
             else:
                 result.append(f"{indent}├── {file.name}")
-            
+
         for i, subfolder in enumerate(sorted(self.subfolders, key=lambda f: f.name)):
-            is_last = (i == len(self.subfolders) - 1)
+            is_last = i == len(self.subfolders) - 1
             if is_last:
                 result.append(subfolder.tree(indent + "    "))
             else:
                 result.append(subfolder.tree(indent + "│   "))
-                
+
         return "\n".join(result)
 
     def __repr__(self) -> str:

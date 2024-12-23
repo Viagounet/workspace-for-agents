@@ -1,14 +1,23 @@
 import json
+from workspace_for_agents.task import Task
+from workspace_for_agents.agent import Agent
 from workspace_for_agents.employee import Employee
 
 
 class Environment:
-    def __init__(self, employees: list[Employee] = []) -> None:
+    def __init__(self, agent: Agent, employees: list[Employee] = []) -> None:
         self.employees = employees
+        self.agent = agent
 
     def feed_fact(self, employee: Employee, fact: str):
         employee.known_facts.append(fact)
 
+    def get_employee_by_name(self, name: str) -> Employee:
+        for employee in self.employees:
+            if employee.name == name:
+                return employee
+        raise KeyError(f"Couldn't find {name} when calling Environment.get_employee_by_name()")
+    
     def display_relationships_graph(self):
         """Displays a graph visualization of employee relationships using networkx and matplotlib"""
         try:
@@ -52,6 +61,15 @@ class Environment:
         plt.axis("off")
         plt.show()
 
+    def run_task(self, task: Task, max_turns: int = 10) -> None:
+        self.agent.header = task.task_goal
+        for turn in range(max_turns):
+            self.agent.execute()
+
+        for goal in task.completion_goals:
+            print(f"{goal.name}: {goal.score}")
+
+
 
 def create_environnement_from_file(file_path: str) -> Environment:
     with open(file_path, "r", encoding="utf-8") as f:
@@ -76,5 +94,6 @@ def create_environnement_from_file(file_path: str) -> Environment:
         for employee_id in folder["has_access"]:
             employees[employee_id].add_files_from_folder(folder["path"])
 
-    env = Environment(employees=list(employees.values()))
+    agent = Agent()
+    env = Environment(agent=agent, employees=list(employees.values()))
     return env

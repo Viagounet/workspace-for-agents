@@ -65,7 +65,7 @@ Chloe uses data-driven approaches to optimize urban infrastructure. She has work
 ---
 
 ### **12. Ravi Deshmukh**  
-**Role:** Entrepreneur  
+**Role:** Entrepreneur
 Ravi founded a startup offering smart mobility solutions, using IoT and telematics to optimize fleet operations and reduce carbon emissions.
 
 ---
