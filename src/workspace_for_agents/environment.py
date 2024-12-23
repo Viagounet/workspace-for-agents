@@ -16,8 +16,10 @@ class Environment:
         for employee in self.employees:
             if employee.name == name:
                 return employee
-        raise KeyError(f"Couldn't find {name} when calling Environment.get_employee_by_name()")
-    
+        raise KeyError(
+            f"Couldn't find {name} when calling Environment.get_employee_by_name()"
+        )
+
     def display_relationships_graph(self):
         """Displays a graph visualization of employee relationships using networkx and matplotlib"""
         try:
@@ -68,7 +70,6 @@ class Environment:
 
         for goal in task.completion_goals:
             print(f"{goal.name}: {goal.score}")
-
 
 
 def create_environnement_from_file(file_path: str) -> Environment:
