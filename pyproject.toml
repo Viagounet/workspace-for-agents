@@ -1,0 +1,17 @@
+[project]
+name = "workspace-for-agents"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Viagounet", email = "ismael.rousseau@gmail.com" }
+]
+requires-python = ">=3.8"
+dependencies = []
+
+[project.scripts]
+workspace-for-agents = "workspace_for_agents:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
