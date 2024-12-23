@@ -1,6 +1,7 @@
 import json
+from workspace_for_agents.actions import SendEmail, Wait
 from workspace_for_agents.task import Task
-from workspace_for_agents.agent import Agent
+from workspace_for_agents.agent import Agent, HumanAgent
 from workspace_for_agents.employee import Employee
 
 
@@ -66,7 +67,8 @@ class Environment:
     def run_task(self, task: Task, max_turns: int = 10) -> None:
         self.agent.header = task.task_goal
         for turn in range(max_turns):
-            self.agent.execute()
+            action = self.agent.choose_action()
+            self.agent.execute_action(action)
 
         for goal in task.completion_goals:
             print(f"{goal.name}: {goal.score}")
@@ -95,6 +97,6 @@ def create_environnement_from_file(file_path: str) -> Environment:
         for employee_id in folder["has_access"]:
             employees[employee_id].add_files_from_folder(folder["path"])
 
-    agent = Agent()
+    agent = HumanAgent(available_actions=[SendEmail, Wait])
     env = Environment(agent=agent, employees=list(employees.values()))
     return env
