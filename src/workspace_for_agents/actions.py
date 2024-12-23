@@ -1,10 +1,12 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
+from workspace_for_agents.mail import Email
+
 
 class Action(ABC):
     def __init__(self) -> None:
-        pass
+        self.source = None
 
     @property
     @abstractmethod
@@ -17,18 +19,30 @@ class Action(ABC):
 
 
 class SendEmail(Action):
-    def __init__(self, receiver: str, content: str) -> None:
+    def __init__(self, receiver: str, object: str, content: str) -> None:
         super().__init__()
         self.receiver = receiver
+        self.object = object
         self.content = content
 
     @classmethod
     def description(self) -> str:
-        return "send_mail_to(target_mail: str, content: str) # Sends an email to `target_mail`"
+        return "send_mail_to(target_mail: str, object: str, content: str) # Sends an email to `target_mail`"
 
-    def execute(self):
-        print(f"Sending an email to: {self.receiver}")
-        pass
+    def execute(self, env):
+        if not self.source:
+            raise RuntimeError("No source set for SendEmail")
+        self.sender = self.source.email
+        target_employee = env.get_employee_by_email(self.receiver)
+        target_employee.email_box.emails.append(
+            Email(
+                sender=self.source.email,
+                receiver=target_employee.email,
+                object=self.object,
+                content=self.content,
+                turn=env.current_turn,
+            )
+        )
 
 
 class Wait(Action):
@@ -39,7 +53,7 @@ class Wait(Action):
     def description(self) -> str:
         return "wait() # Wait and does nothing"
 
-    def execute(self):
+    def execute(self, env):
         pass
 
 
@@ -51,7 +65,7 @@ class NoActionAfterParsing(Action):
     def description(self) -> str:
         return "is taken when the parsing failed"
 
-    def execute(self):
+    def execute(self, env):
         pass
 
 

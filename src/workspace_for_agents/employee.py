@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Self
 
+from workspace_for_agents.mail import EmailBox
 from workspace_for_agents.actions import Action
 from workspace_for_agents.file_system import File, Folder
 
@@ -22,6 +23,7 @@ class Employee:
         self.folders: list[Folder] = []
         self.files: list[File] = []
         self.actions: list[Action] = []
+        self.email_box = EmailBox()
 
     def add_contact(self, employee: Self):
         if employee.id in self.contacts_map.keys():
@@ -56,6 +58,11 @@ class Employee:
                 file = File(file_path, filename)
                 current_folder.add_file(file)
                 self.files.append(file)
+
+    def execute_action(self, action: Action):
+        action.source = self
+        action.execute(self.env)
+        self.actions.append(action)
 
     @property
     def contacts(self):

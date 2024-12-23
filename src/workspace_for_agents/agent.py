@@ -14,6 +14,7 @@ class Agent(Employee):
         self.available_actions = available_actions
         self.agent_description = agent_description
         self.header = ""
+        self.env = None
 
     @property
     def actions_descriptions(self) -> str:
@@ -21,10 +22,6 @@ class Agent(Employee):
         for action in self.available_actions:
             description += f"- {action.description()}\n"
         return description.strip()
-
-    def execute_action(self, action: Action):
-        action.source = self
-        action.execute()
 
     def choose_action(self) -> Action:
         return Wait()

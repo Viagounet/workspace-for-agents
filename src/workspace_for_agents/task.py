@@ -7,7 +7,7 @@ class Goal:
     def score(self):
         points = 0
         for condition in self.conditions:
-            if condition:
+            if condition():  # Call the condition function to evaluate it dynamically
                 points += 1
         return points / len(self.conditions)
 

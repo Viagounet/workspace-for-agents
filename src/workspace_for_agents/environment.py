@@ -9,6 +9,8 @@ class Environment:
     def __init__(self, agent: Agent, employees: list[Employee] = []) -> None:
         self.employees = employees
         self.agent = agent
+        self.agent.env = self
+        self.current_turn = 0
 
     def feed_fact(self, employee: Employee, fact: str):
         employee.known_facts.append(fact)
@@ -17,8 +19,17 @@ class Environment:
         for employee in self.employees:
             if employee.name == name:
                 return employee
+
         raise KeyError(
             f"Couldn't find {name} when calling Environment.get_employee_by_name()"
+        )
+
+    def get_employee_by_email(self, email: str) -> Employee:
+        for employee in self.employees:
+            if employee.email == email:
+                return employee
+        raise KeyError(
+            f"Couldn't find {email} when calling Environment.get_employee_by_email()"
         )
 
     def display_relationships_graph(self):
@@ -67,13 +78,14 @@ class Environment:
     def run_task(self, task: Task, max_turns: int = 10) -> None:
         self.agent.header = task.task_goal
         for turn in range(max_turns):
+            self.current_turn = turn
             action = self.agent.choose_action()
             self.agent.execute_action(action)
 
         for goal in task.completion_goals:
             print(f"{goal.name}: {goal.score}")
-
-
+        print(self.get_employee_by_email("ibrahim.mendoza@company.com").email_box)
+        self.current_turn = 0
 def create_environnement_from_file(file_path: str) -> Environment:
     with open(file_path, "r", encoding="utf-8") as f:
         env_data = json.load(f)
