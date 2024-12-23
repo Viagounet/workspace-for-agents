@@ -182,27 +182,73 @@
     "folders": [
         {
             "path": "src\\envs\\files\\Offres d'interconnexion et d'acces\\offre d'interconnexion - telephonie fixe",
-            "has_access": [2]
+            "has_access": [
+                2
+            ]
         },
         {
             "path": "src/envs/files/Offres d'interconnexion et d'acces/offre d'interconnexion SVA",
-            "has_access": [2]
+            "has_access": [
+                2
+            ]
         },
         {
             "path": "src/envs/files/Offres d'interconnexion et d'acces/offre de reference Vente en Gros de l'Abonnement telephonique",
-            "has_access": [2]
+            "has_access": [
+                2
+            ]
         },
         {
             "path": "src/envs/files/Offres d'interconnexion et d'acces/offres de reference d'interconnexion au reseau mobile",
-            "has_access": [2]
+            "has_access": [
+                2
+            ]
         },
         {
             "path": "src/envs/files/Reseau boucle locale cuivre/offre de reference",
-            "has_access": [3]
+            "has_access": [
+                3
+            ]
         },
         {
             "path": "src/envs/files/Reseau boucle locale cuivre/Les NRA d'Orange",
-            "has_access": [2,5]
+            "has_access": [
+                2,
+                5
+            ]
+        },
+        {
+            "path": "src/envs/files/Collectivites locales",
+            "has_access": [
+                7
+            ]
+        },
+        {
+            "path": "src/envs/files/READMEs/machine-learning",
+            "has_access": [
+                14,
+                15
+            ]
+        },
+        {
+            "path": "src/envs/files/READMEs/web-dev",
+            "has_access": [
+                0,
+                1
+            ]
+        },
+        {
+            "path": "src/envs/files/READMEs/voIP",
+            "has_access": [
+                1,
+                2
+            ]
+        },
+        {
+            "path": "src/envs/files/HR/profiles",
+            "has_access": [
+                8
+            ]
         }
     ]
 }
