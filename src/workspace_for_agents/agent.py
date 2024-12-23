@@ -3,7 +3,11 @@ from workspace_for_agents.employee import Employee
 
 
 class Agent(Employee):
-    def __init__(self, available_actions: list[Action], agent_description: str = "An abstract Agent."):
+    def __init__(
+        self,
+        available_actions: list[Action],
+        agent_description: str = "An abstract Agent.",
+    ):
         super().__init__(
             -1, "<agent>", "agent@company.com", "The agent that automates tasks."
         )
@@ -25,8 +29,13 @@ class Agent(Employee):
     def choose_action(self) -> Action:
         return Wait()
 
+
 class HumanAgent(Agent):
-    def __init__(self, available_actions: list[Action], agent_description: str = "Human controlled-agent"):
+    def __init__(
+        self,
+        available_actions: list[Action],
+        agent_description: str = "Human controlled-agent",
+    ):
         super().__init__(available_actions, agent_description)
 
     def choose_action(self) -> Action:
