@@ -23,7 +23,7 @@ class EmailBox:
 
         if not requested_email:
             return f"The email with id `{mail_id}` was not found."
-        return f"OBJECT: {requested_email.object}\nFROM: {requested_email.sender}\nTO: {requested_email.receiver}\nCONTENT: {requested_email.content}"
+        return requested_email.string
 
 
 class Email:
@@ -39,3 +39,7 @@ class Email:
     @cached_property
     def id(self):
         return str(hash(self))[-4:-1]
+
+    @property
+    def string(self):
+        return f"OBJECT: {self.object}\nFROM: {self.sender}\nTO: {self.receiver}\nCONTENT: {self.content}"
