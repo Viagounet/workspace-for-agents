@@ -1,8 +1,8 @@
 from dataclasses import dataclass
-from typing import Self
+from typing import Optional, Self
 
 from workspace_for_agents.mail import EmailBox
-from workspace_for_agents.actions import Action
+from workspace_for_agents.actions import Action, Wait, parse_action
 from workspace_for_agents.file_system import File, Folder
 
 
@@ -24,6 +24,12 @@ class Employee:
         self.files: list[File] = []
         self.actions: list[Action] = []
         self.email_box = EmailBox()
+        self.preplanned_actions: dict[str, Action] = {"do-nothing": Wait()}
+        self.instructions: list[str] = []
+
+    @property
+    def formated_instructions(self):
+        return "Instructions:\n" + "\n- ".join(self.instructions)
 
     def add_contact(self, employee: Self):
         if employee.id in self.contacts_map.keys():
@@ -59,6 +65,11 @@ class Employee:
                 current_folder.add_file(file)
                 self.files.append(file)
 
+    def choose_action(self) -> Action:
+        if "send-mail-agent-need-hire" in self.preplanned_actions.keys():
+            return self.preplanned_actions["send-mail-agent-need-hire"]
+        return Wait()
+
     def execute_action(self, action: Action):
         action.source = self
         action.execute(self.env)
@@ -71,6 +82,9 @@ class Employee:
     def list_available_files(self):
         for folder in self.folders:
             print(folder.tree())
+
+    def handle_events(self, states: list[str]):
+        pass
 
     def __repr__(self) -> str:
         return f"Employee(id={self.id}, name={self.name}, email={self.email}, additional_info={self.additional_information})"

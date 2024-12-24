@@ -1,5 +1,5 @@
 import json
-from workspace_for_agents.actions import SendEmail, Wait
+from workspace_for_agents.actions import CheckMailBox, ReadMail, SendEmail, Wait
 from workspace_for_agents.task import Task
 from workspace_for_agents.agent import Agent, HumanAgent
 from workspace_for_agents.employee import Employee
@@ -8,9 +8,12 @@ from workspace_for_agents.employee import Employee
 class Environment:
     def __init__(self, agent: Agent, employees: list[Employee] = []) -> None:
         self.employees = employees
+        for employee in self.employees:
+            employee.env = self
         self.agent = agent
         self.agent.env = self
         self.current_turn = 0
+        self.current_states: list[str] = ["<default>"]
 
     def feed_fact(self, employee: Employee, fact: str):
         employee.known_facts.append(fact)
@@ -25,6 +28,9 @@ class Environment:
         )
 
     def get_employee_by_email(self, email: str) -> Employee:
+        if email == self.agent.email:
+            return self.agent
+
         for employee in self.employees:
             if employee.email == email:
                 return employee
@@ -82,6 +88,11 @@ class Environment:
             action = self.agent.choose_action()
             self.agent.execute_action(action)
 
+            for employee in self.employees:
+                action = employee.choose_action()
+                print(">", action)
+                employee.execute_action(action)
+
         for goal in task.completion_goals:
             print(f"{goal.name}: {goal.score}")
         print(self.get_employee_by_email("ibrahim.mendoza@company.com").email_box)
@@ -111,6 +122,6 @@ def create_environnement_from_file(file_path: str) -> Environment:
         for employee_id in folder["has_access"]:
             employees[employee_id].add_files_from_folder(folder["path"])
 
-    agent = HumanAgent(available_actions=[SendEmail, Wait])
+    agent = HumanAgent(available_actions=[CheckMailBox, ReadMail, SendEmail, Wait])
     env = Environment(agent=agent, employees=list(employees.values()))
     return env

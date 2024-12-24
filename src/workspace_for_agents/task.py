@@ -1,3 +1,7 @@
+from typing import TypedDict
+from workspace_for_agents.employee import Employee
+
+
 class Goal:
     def __init__(self, name: str, conditions) -> None:
         self.name = name
@@ -13,8 +17,9 @@ class Goal:
 
 
 class Behaviour:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, employee: Employee, conditions: dict[list[str], str]) -> None:
+        self.employee = employee
+        self.conditions = conditions
 
 
 class Task:

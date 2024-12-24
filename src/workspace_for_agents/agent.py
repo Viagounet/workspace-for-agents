@@ -15,6 +15,7 @@ class Agent(Employee):
         self.agent_description = agent_description
         self.header = ""
         self.env = None
+        self.short_term_context: str = ""
 
     @property
     def actions_descriptions(self) -> str:
@@ -36,7 +37,10 @@ class HumanAgent(Agent):
         super().__init__(available_actions, agent_description)
 
     def choose_action(self) -> Action:
-        print(f"{self.header}\n{self.actions_descriptions}")
+        print(
+            f"{self.short_term_context}\n\n{self.header}\n{self.actions_descriptions}"
+        )
         action_string = input("> ")
         action = parse_action(action_string)
+        self.short_term_context = ""
         return action

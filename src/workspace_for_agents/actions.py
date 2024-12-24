@@ -8,14 +8,38 @@ class Action(ABC):
     def __init__(self) -> None:
         self.source = None
 
-    @property
     @abstractmethod
     def description(self) -> str:
         pass
 
     @abstractmethod
-    def execute(self) -> str:
+    def execute(self):
         pass
+
+
+class ReadMail(Action):
+    def __init__(self, mail_id: int) -> None:
+        super().__init__()
+        self.mail_id = mail_id
+
+    @classmethod
+    def description(self) -> str:
+        return "read_mail(id: int) # Reads the mail associated with the provided id`"
+
+    def execute(self, env):
+        env.agent.short_term_context += env.agent.email_box.read_email(self.mail_id)
+
+
+class CheckMailBox(Action):
+    def __init__(self) -> None:
+        super().__init__()
+
+    @classmethod
+    def description(self) -> str:
+        return "check_mailbox() # Checks your mail box"
+
+    def execute(self, env):
+        env.agent.short_term_context += env.agent.email_box.display()
 
 
 class SendEmail(Action):
@@ -69,7 +93,7 @@ class NoActionAfterParsing(Action):
         pass
 
 
-def parse_action(action_str: str) -> Optional[Action]:
+def parse_action(action_str: str) -> Action:
     """Parse a string command into an Action object.
 
     Args:
@@ -85,6 +109,8 @@ def parse_action(action_str: str) -> Optional[Action]:
     args = [arg.strip().strip("\"'") for arg in args_str.split(",")] if args_str else []
     # Map action names to their corresponding classes and required arguments
     action_map = {
+        "check_mailbox": (CheckMailBox, []),
+        "read_mail": (ReadMail, [0]),
         "wait": (Wait, []),
         "send_mail_to": (SendEmail, ["agent@company.com", "target_mail", "content"]),
     }
