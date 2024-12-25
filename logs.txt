@@ -1,0 +1,56 @@
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+700  |    0 | agent@company.com    | Needing assistance for hire?
+Mails details: 
+
+OBJECT: Needing assistance for hire?
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Hey I heard you needed assistance for hiring someone?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Did you receive a mail fromagent@company.com asking for instructions about what he should do, or ask additional information?'
+
+
+
+{'argumentation': "The email in question from 'agent@company.com' asks if the recipient, 'ibrahim.mendoza@company.com', needs assistance with hiring someone. While this is inquiring about needing help or information, it does not explicitly ask for instructions or additional information about what the agent should do next. Rather, it is a preliminary inquiry to confirm if assistance is needed. There is no direct request for specific instructions or more detailed information provided in the content of the email.", 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+389  |    0 | agent@company.com    | Needing assistance for hire?
+Mails details: 
+
+OBJECT: Needing assistance for hire?
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Hey I heard you needed assistance for hiring someone?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Is agent@company.com reaching out for help?'
+
+
+
+{'argumentation': 'The email from agent@company.com is directed to ibrahim.mendoza@company.com and expresses an awareness of a need for hiring assistance. The wording "Hey I heard you needed assistance for hiring someone?" indicates that agent@company.com is indeed acknowledging that they are aware of a need for assistance, suggesting that they are indeed reaching out in the context of offering help or engaging in a conversation about hiring assistance. Thus, the condition \'Is agent@company.com reaching out for help?\' is valid as they are confirming the perceived need for assistance and potentially offering support.', 'condition_is_verified': True}

@@ -1,5 +1,5 @@
 import json
-from workspace_for_agents.actions import CheckMailBox, ReadMail, SendEmail, Wait
+from workspace_for_agents.actions import Action, CheckMailBox, ReadMail, SendEmail, Wait
 from workspace_for_agents.task import Task
 from workspace_for_agents.agent import Agent, HumanAgent
 from workspace_for_agents.employee import Employee
@@ -89,9 +89,9 @@ class Environment:
             self.agent.execute_action(action)
 
             for employee in self.employees:
-                action = employee.choose_action()
-                print(">", action)
-                employee.execute_action(action)
+                actions = employee.choose_actions()
+                for action in actions:
+                    employee.execute_action(action)
 
         for goal in task.completion_goals:
             print(f"{goal.name}: {goal.score}")

@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import TypedDict
 
 from workspace_for_agents.mail import Email
 
@@ -122,3 +122,8 @@ def parse_action(action_str: str) -> Action:
             return action_class()
         return action_class(*args)
     return NoActionAfterParsing()
+
+
+class ConditionedAction(TypedDict):
+    condition: callable
+    linked_action: Action

@@ -1,12 +1,11 @@
-from dataclasses import dataclass
 import os
-from typing import Literal, Optional, Self
+from typing import Literal, Self
 
 from openai import OpenAI
 from pydantic import BaseModel, Field
 
 from workspace_for_agents.mail import EmailBox
-from workspace_for_agents.actions import Action, Wait, parse_action
+from workspace_for_agents.actions import Action, ConditionedAction, Wait
 from workspace_for_agents.file_system import File, Folder
 
 
@@ -28,7 +27,7 @@ class Employee:
         self.files: list[File] = []
         self.actions: list[Action] = []
         self.email_box = EmailBox()
-        self.preplanned_actions: dict[str, Action] = {"do-nothing": Wait()}
+        self.preplanned_actions: dict[str, ConditionedAction] = {}
         self.instructions: list[str] = []
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -77,37 +76,18 @@ class Employee:
         for email in self.email_box.emails:
             infos += email.string + "\n----\n"
         infos += "Available files:\n\n" + self.list_available_files()
-        infos += "=====\nIMPORTANT\n====\nThese are the possible actions you can take this turn:"
-        for id, preplanned_action in self.preplanned_actions.items():
-            infos += f"ID: {id} ; description => {preplanned_action.description}\n\n"
         return infos
 
-    def choose_action(self) -> Action:
-        available_actions = tuple(list(self.preplanned_actions.keys()))
-
-        class Choice(BaseModel):
-            explanation: str = Field(description="The explaination behind your action.")
-            choice_id: Literal[available_actions] = Field(
-                description="The choice's id that you will take."
-            )
-
-        completion = self.client.beta.chat.completions.parse(
-            model="gpt-4o-2024-08-06",
-            messages=[
-                {
-                    "role": "system",
-                    "content": f"Your name is {self.name}. Here's more to know about you: {self.additional_information}\n\nAccording to the context, you will need to take an action.",
-                },
-                {"role": "user", "content": self.all_important_infos},
-            ],
-            response_format=Choice,
-        )
-
-        choice_taken_by_employee = completion.choices[0].message.parsed
-        print(">>>>>>>>", choice_taken_by_employee)
-        if "send-mail-agent-need-hire" in self.preplanned_actions.keys():
-            return self.preplanned_actions["send-mail-agent-need-hire"]
-        return Wait()
+    def choose_actions(self) -> list[Action]:
+        actions: list[Action] = []
+        actions_ids: list[str] = []
+        for id, preplanned_action in self.preplanned_actions.items():
+            if preplanned_action["condition"]():
+                actions.append(preplanned_action["linked_action"])
+                actions_ids.append(id)
+        for id in actions_ids:
+            del self.preplanned_actions[id]
+        return actions
 
     def execute_action(self, action: Action):
         action.source = self

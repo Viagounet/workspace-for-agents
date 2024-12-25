@@ -2,6 +2,7 @@ from workspace_for_agents.actions import SendEmail
 from workspace_for_agents.employee import Employee
 from workspace_for_agents.environment import Environment
 from workspace_for_agents.task import Behaviour, Goal, Task
+from workspace_for_agents.utils import semantic_is_true
 
 
 def has_sent_email(employee: Employee, target: str) -> bool:
@@ -17,11 +18,16 @@ def setup_task(env: Environment) -> Task:
     IBRAHIM.instructions.append(
         f"If you received a mail from {env.agent.email}, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing."
     )
-    IBRAHIM.preplanned_actions["send-mail-agent-need-hire"] = SendEmail(
-        env.agent.email,
-        "RE: Assistance needed?",
-        "Thanks for emailing me, actually, I would like to hire a new employee for our work on WikiFactDiff. Once you've found someone that seems like a good fit, send him a mail!",
-    )
+    IBRAHIM.preplanned_actions["send-mail-agent-need-hire"] = {
+        "condition": lambda: semantic_is_true(
+            f"Is {env.agent.email} reaching out for help?", IBRAHIM.all_important_infos
+        ),
+        "linked_action": SendEmail(
+            env.agent.email,
+            "RE: Assistance needed?",
+            "Thanks for emailing me, actually, I would like to hire a new employee for our work on WikiFactDiff. Once you've found someone that seems like a good fit, send him a mail!",
+        ),
+    }
 
     TALKED_TO_IBRAHIM = Goal(
         name="talk-to-ibrahim",
