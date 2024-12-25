@@ -1222,3 +1222,143 @@ CONDITION = 'Condition should be valid if agent@company.com is reaching out to a
 
 
 {'argumentation': 'The second email from agent@company.com, titled "RE: Contacts for hiring," explicitly asks if Ibrahim knows who they can contact to obtain a list of candidates. This request aligns with the condition that the agent is reaching out to ask for more information about who to contact. Therefore, the condition is verified.', 'condition_is_verified': True}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'Based on the provided context, no email or interaction from agent@company.com is mentioned. Without any indication of contact or outreach from this specific email address in the context, the condition cannot be verified. The files listed do not give any indication of communication involving this email address either. Therefore, the statement that agent@company.com is involved is not supported by the given information.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The provided context does not indicate any communication from the email address 'agent@company.com', nor does it suggest that the agent is either offering assistance or requesting additional information. The context only lists some available files and mentions there are no emails yet. Therefore, the condition is not verified with the given context.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The context provided shows a directory structure without any related emails, particularly there is no mention of an email from agent@company.com or its contents. Since there is no information or evidence suggesting that agent@company.com is reaching out or asking for additional information, the condition cannot be considered valid.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The condition suggests that agent@company.com would either be offering assistance or requesting further information. However, the context provided gives no indication of any email, let alone one from 'agent@company.com'. There is no indication that someone is reaching out to assist or request additional information, thereby making it impossible to verify this condition.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The condition is not valid because the context provided does not include any mention of an agent or any emails from 'agent@company.com'. Additionally, there are no indications of anyone reaching out to assist or ask for additional information. The context simply provides a list of available files, with no email correspondence or communication from an agent described.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The condition is invalid in this context because there are no emails or interactions involving 'agent@company.com' described within the available files. The prompt outlines file names related to machine learning topics, and there is no mention of any email correspondence with the specified email address. Without evidence of 'agent@company.com' reaching out to assist or requesting information, the condition cannot be considered valid.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The context only includes a list of files related to machine learning with no information about any emails or communications from an agent at 'agent@company.com'. Since there is no mention or indication of interaction from this email address, we cannot verify that the condition is met based on the provided context.", 'condition_is_verified': False}

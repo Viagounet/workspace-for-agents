@@ -12,6 +12,10 @@ def has_sent_email(employee: Employee, target: str) -> bool:
                 return True
     return False
 
+def has_not_received_mail(env: Environment, employee: Employee, max_turn: int) -> bool:
+    if env.current_turn > max_turn and env.agent.email not in [mail.sender for mail in employee.email_box.emails]:
+        return True
+    return False
 
 def setup_task(env: Environment) -> Task:
     IBRAHIM: Employee = env.get_employee_by_name("Ibrahim Mendoza")
@@ -43,7 +47,16 @@ def setup_task(env: Environment) -> Task:
         score=1,
         requires_completion=[IBRAHIM.preplanned_actions["send-mail-agent-need-hire"]],
     )
-
+    IBRAHIM.preplanned_actions["ibrahim-requires-help"] = ConditionedAction(
+        lambda: has_not_received_mail(env, IBRAHIM, max_turn=3),
+        SendEmail(
+            env.agent.email,
+            "RE: Requiring immediate help.",
+            "Dude, you're super late about your task, can you PLEASE help me with the hiring process for WikiFactDiff??\nIbrahim.",
+        ),
+        score=-5,
+        requires_completion=[],
+    )
     TALKED_TO_IBRAHIM = Goal(
         name="talk-to-ibrahim",
         conditions=[lambda: has_sent_email(env.agent, IBRAHIM.email)],
