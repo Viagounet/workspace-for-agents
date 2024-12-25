@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import TypedDict
+from dataclasses import dataclass, field
+from typing import Callable
 
 from workspace_for_agents.mail import Email
 
@@ -124,6 +125,10 @@ def parse_action(action_str: str) -> Action:
     return NoActionAfterParsing()
 
 
-class ConditionedAction(TypedDict):
-    condition: callable
+@dataclass
+class ConditionedAction:
+    condition: Callable
     linked_action: Action
+    score: int
+    requires_completion: list = field(default_factory=list)
+    is_completed: bool = False

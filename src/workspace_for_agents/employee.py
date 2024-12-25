@@ -1,11 +1,10 @@
 import os
-from typing import Literal, Self
+from typing import Self
 
 from openai import OpenAI
-from pydantic import BaseModel, Field
 
 from workspace_for_agents.mail import EmailBox
-from workspace_for_agents.actions import Action, ConditionedAction, Wait
+from workspace_for_agents.actions import Action, ConditionedAction
 from workspace_for_agents.file_system import File, Folder
 
 
@@ -80,13 +79,17 @@ class Employee:
 
     def choose_actions(self) -> list[Action]:
         actions: list[Action] = []
-        actions_ids: list[str] = []
         for id, preplanned_action in self.preplanned_actions.items():
-            if preplanned_action["condition"]():
-                actions.append(preplanned_action["linked_action"])
-                actions_ids.append(id)
-        for id in actions_ids:
-            del self.preplanned_actions[id]
+            all_requirements_completed = True
+            for required_completed_actions in preplanned_action.requires_completion:
+                if not required_completed_actions.is_completed:
+                    all_requirements_completed = False
+                    break
+            if not all_requirements_completed:
+                continue
+            if not preplanned_action.is_completed and preplanned_action.condition():
+                actions.append(preplanned_action.linked_action)
+                preplanned_action.is_completed = True
         return actions
 
     def execute_action(self, action: Action):

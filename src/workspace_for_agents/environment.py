@@ -1,5 +1,5 @@
 import json
-from workspace_for_agents.actions import Action, CheckMailBox, ReadMail, SendEmail, Wait
+from workspace_for_agents.actions import CheckMailBox, ReadMail, SendEmail, Wait
 from workspace_for_agents.task import Task
 from workspace_for_agents.agent import Agent, HumanAgent
 from workspace_for_agents.employee import Employee

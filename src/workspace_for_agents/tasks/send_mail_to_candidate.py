@@ -1,7 +1,7 @@
-from workspace_for_agents.actions import SendEmail
+from workspace_for_agents.actions import ConditionedAction, SendEmail
 from workspace_for_agents.employee import Employee
 from workspace_for_agents.environment import Environment
-from workspace_for_agents.task import Behaviour, Goal, Task
+from workspace_for_agents.task import Goal, Task
 from workspace_for_agents.utils import semantic_is_true
 
 
@@ -18,16 +18,31 @@ def setup_task(env: Environment) -> Task:
     IBRAHIM.instructions.append(
         f"If you received a mail from {env.agent.email}, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing."
     )
-    IBRAHIM.preplanned_actions["send-mail-agent-need-hire"] = {
-        "condition": lambda: semantic_is_true(
-            f"Is {env.agent.email} reaching out for help?", IBRAHIM.all_important_infos
+    IBRAHIM.preplanned_actions["send-mail-agent-need-hire"] = ConditionedAction(
+        lambda: semantic_is_true(
+            f"Condition should be valid if {env.agent.email} is reaching out to assist you, or is asking for additional information.",
+            IBRAHIM.all_important_infos,
         ),
-        "linked_action": SendEmail(
+        SendEmail(
             env.agent.email,
             "RE: Assistance needed?",
             "Thanks for emailing me, actually, I would like to hire a new employee for our work on WikiFactDiff. Once you've found someone that seems like a good fit, send him a mail!",
         ),
-    }
+        score=1,
+    )
+    IBRAHIM.preplanned_actions["provides-madeline-email"] = ConditionedAction(
+        lambda: semantic_is_true(
+            f"Condition should be valid if {env.agent.email} is reaching out to ask for more information about who to contact.",
+            IBRAHIM.all_important_infos,
+        ),
+        SendEmail(
+            env.agent.email,
+            "RE: HR Contact",
+            "Hey Agent, I believe if you need a list of potential candidates, you should probably contact madeline.brooks@company.com",
+        ),
+        score=1,
+        requires_completion=[IBRAHIM.preplanned_actions["send-mail-agent-need-hire"]],
+    )
 
     TALKED_TO_IBRAHIM = Goal(
         name="talk-to-ibrahim",

@@ -16,12 +16,8 @@ class ConditionVerification(BaseModel):
 
 
 def semantic_is_true(condition: str, context: Optional[str | Callable] = None) -> bool:
-    print("==============")
-    print(type(context))
     if callable(context):
-        print("Yeaaaaah that's true bro")
         context = context()
-    print("==============")
 
     additional_guidance = "According to your internal knowledge"
     if context:

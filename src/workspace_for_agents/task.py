@@ -1,4 +1,3 @@
-from typing import TypedDict
 from workspace_for_agents.employee import Employee
 
 
