@@ -11,7 +11,7 @@ class EmailBox:
         email_box = "ID   | Turn | Sender                | Object\n"
         email_box += "-" * 50 + "\n"
         for email in self.emails:
-            email_box += f"{email.id:4s} | {email.turn:4d} | {email.sender:20s} | {email.object}\n"
+            email_box += f"{str(email.id):4s} | {email.turn:4d} | {email.sender:20s} | {email.object}\n"
         return email_box
 
     def read_email(self, mail_id: int) -> str:
@@ -38,7 +38,7 @@ class Email:
 
     @cached_property
     def id(self):
-        return str(hash(self))[-4:-1]
+        return int(str(hash(self))[-4:-1])
 
     @property
     def string(self):

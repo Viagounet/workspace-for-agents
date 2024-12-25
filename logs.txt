@@ -164,3 +164,1061 @@ CONDITION = 'Condition should be valid if agent@company.com is reaching out to a
 
 
 {'argumentation': "The email with the subject 'HR Contact' indicates that agent@company.com is reaching out to ask Ibrahim Mendoza for contact information regarding potential candidates. This matches the condition of reaching out to ask for more information about who to contact.", 'condition_is_verified': True}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The context provided does not include any email content or any reference to an email address, including agent@company.com. Therefore, there is no basis to determine whether the condition is satisfied based on the provided materials. The presence of machine learning-related files does not relate to any communication from or about the email address mentioned in the condition. Without additional information or the presence of such communication, the condition cannot be verified.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The context provided indicates that there are no emails, and only a list of files is available. There is no mention of any communications or emails involving an agent with the email 'agent@company.com'. Therefore, based on the lack of any reference to such communications in the provided context, the condition where 'agent@company.com is reaching out to assist or asking for additional information' is inherently not fulfilled.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The context provided does not list any emails received or any information about an entity with the email address agent@company.com reaching out to assist or requesting additional information. Since the condition specifically requires an email interaction from this particular address, and there is no such evidence in the given context, the condition cannot be considered valid.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+487  |    3 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The email from agent@company.com explicitly states that the sender has received an order to assist Ibrahim and asks how they can help. This matches the part of the condition about reaching out to assist you. Additionally, the message does not explicitly ask for additional information, but the open-ended question about how they can help implies a need for more context, fitting the second part of the condition about asking for additional information. Therefore, both aspects of the condition are met.', 'condition_is_verified': True}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+487  |    3 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The email content indicates that the sender, agent@company.com, is reaching out to offer assistance and asking how they can help. It does not imply that the sender is asking for more information about whom to contact. The message does not request any contact information or suggest that the sender needs any clarification about whom to reach out to. Therefore, the condition is not met since the content is about offering help, not about seeking contact guidance.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+487  |    3 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': "The email from agent@company.com to Ibrahim doesn't indicate that the agent is seeking additional contact information. The content of the email suggests the agent is offering assistance rather than asking about who to contact. Therefore, the condition of the agent reaching out to ask for who to contact is not met. There is no question or indication in the email that suggests the agent is unsure about whom they should communicate with further.", 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+487  |    3 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': "The email from agent@company.com does not explicitly ask for more information about who to contact. Instead, the sender states that they have received an order to assist Ibrahim and queries how they can help. There's no mention of needing further contact information or clarification on who to communicate with. Therefore, the condition is not verified.", 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+487  |    3 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The email from agent@company.com is clearly asking how they can assist Ibrahim, not for contact information about who to reach out to. The purpose of the email is to offer help directly to Ibrahim, which indicates that the agent is not seeking information on whom to contact further. Therefore, the condition is not verified.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+487  |    3 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The email from agent@company.com is addressed to Ibrahim and mentions having received an order to assist him. However, there is no explicit request for more information about who to contact. Instead, the agent is asking how they can help Ibrahim specifically, indicating that they are already aware of who their contact is. Therefore, the condition described is not related to the content of the email presented in the context.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+487  |    3 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'Based on the available context, the condition is not valid. The email from agent@company.com is addressed to Ibrahim, and the content explicitly states that the sender has received an order to assist Ibrahim and is inquiring how they can help. There is no mention or implication that the agent is asking for more information about who to contact. Instead, they are directly offering their assistance to Ibrahim.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+487  |    3 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The condition is not valid because the email from agent@company.com states they are contacting to assist Ibrahim, not to ask for contact information. The message does not indicate any request for further contact details.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+631  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'According to the context, the email sent by agent@company.com to ibrahim.mendoza@company.com contains a message that states they got the order to assist and are directly asking how they can help. This indicates that the sender is indeed reaching out to assist or seeking additional information to proceed with their support task.', 'condition_is_verified': True}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+631  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The email from agent@company.com is a project update directed to Ibrahim, offering assistance without specifying a need for further contact information or clarifying who to contact. The message explicitly states "I got the order to assist you. How can I help?" which indicates readiness to provide help directly rather than seeking information about further contact points.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+631  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': "The condition states that the agent is reaching out for information on who to contact. However, the actual message in the context indicates that the agent is offering assistance, not specifically asking for contact details. The agent says 'I got the order to assist you,' which suggests they already know who to contact and are reaching out to offer help, rather than seeking further information on who to contact.", 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+631  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The sender, agent@company.com, is reaching out to Ibrahim with the intention to assist him, as mentioned in the email. However, there is no explicit request for information on who to contact. The condition specifies the agent is seeking information on contacts, which is not evident in the email content.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+115  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The email from agent@company.com explicitly states that they have received the order to assist Ibrahim and are inquiring on how they can help. This aligns with the condition that the agent should be reaching out to assist or asking for additional information. Therefore, the condition is satisfied.', 'condition_is_verified': True}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+115  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The condition mentioned is not valid. The email from agent@company.com is reaching out to offer assistance to Ibrahim Mendoza, not specifically asking for information about who to contact. The content of the message is focused on offering help and asking how the agent can assist Ibrahim, without mentioning a request for contact information.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+115  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The email from agent@company.com is not asking for more information about who to contact. Instead, it is offering assistance directly to Ibrahim without indicating any confusion about contact details or requiring further information on whom to get in touch with.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+115  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The agent from agent@company.com is not asking for more information about who to contact. The message clearly states that the agent is reaching out to assist Ibrahim and is asking how they can help, rather than who they should contact. Therefore, the condition that agent@company.com is asking for contact information is not met.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+518  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The email from agent@company.com explicitly states, 'I got the order to assist you. How can I help?' which indicates that they are reaching out to offer assistance and potentially seeking additional information on how they can support Ibrahim. This aligns with the condition that agent@company.com is reaching out to assist or is asking for more information.", 'condition_is_verified': True}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+518  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The email content from agent@company.com does not mention an inquiry regarding who to contact. Instead, it states that the sender has been directed to assist and is asking how they can help. There is no evidence that the purpose of the message is to obtain more information about a contact person.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+518  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The message from agent@company.com does not indicate a request for more information about who to contact. Instead, the agent is offering assistance and directly asking how they can help Ibrahim, implying that they already know who to contact. Therefore, the condition is not verified.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+518  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': "The email from agent@company.com states that the sender has been instructed to assist Ibrahim Mendoza and does not mention needing contact information about whom to contact. Therefore, the purpose of the email is not to ask for more information about a contact, but rather to offer assistance directly to Ibrahim. Hence, the condition is not consistent with the email's content.", 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+526  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition is partially verified. The email from agent@company.com indicates that they are reaching out to assist, as the sender explicitly states, "I got the order to assist you." However, the condition is more comprehensive, as it also involves asking for additional information, which is not explicitly done in this email. Since the sender is only offering assistance without requesting further information, the full condition as stated is not entirely met.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+526  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The email from agent@company.com explicitly states that they have been ordered to assist Ibrahim and they are asking how they can help. This aligns with the condition which specifies the agent either assisting or asking for additional information.', 'condition_is_verified': True}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+526  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': "The email from agent@company.com is indeed reaching out but not asking for information about who to contact. Instead, the email is offering assistance, likely for a project update, and asks what kind of help Ibrahim might need. There's no indication that agent@company.com is seeking information about additional contacts.", 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+526  |    0 | agent@company.com    | Project Update
+392  |    2 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The emails from agent@company.com are reaching out to ibrahim.mendoza@company.com asking how the agent can assist, not specifically asking for more information about who to contact. Therefore, the condition of asking for more information about a contact is not met.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+526  |    0 | agent@company.com    | Project Update
+392  |    2 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The emails from agent@company.com are offering assistance to Ibrahim Mendoza and asking how they can help, but there is no explicit request for information about who to contact. The emails do not mention needing more information about contacts. Thus, the condition is not verified.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+526  |    0 | agent@company.com    | Project Update
+392  |    2 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The condition is not valid because agent@company.com does not inquire about who to contact. Instead, the agent is offering assistance and asking how they can help Ibrahim, which indicates a different intent.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+526  |    0 | agent@company.com    | Project Update
+392  |    2 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The context provided shows two emails from the agent@company.com asking how they can help, indicating they are offering assistance but not specifically asking for more information about who to contact. The emails do not request further details or indicate uncertainty about the correct contact person. Hence, the condition about reaching out to ask for more information about who to contact is not met.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+186  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The email from agent@company.com explicitly states that they have been ordered to assist Ibrahim and asks how they can help. This directly meets the condition of the agent reaching out to assist or asking for additional information. The intent of assistance and inquiry about how to proceed indicates that the agent is indeed reaching out to provide support or gather further details.', 'condition_is_verified': True}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+186  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The email from agent@company.com is addressing Ibrahim and offering assistance but does not explicitly mention seeking information about who to contact. The message only states, "I got the order to assist you. How can I help?", which suggests a readiness to provide help rather than querying for contact information. Hence, the condition is not verified.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+186  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The email from agent@company.com does not explicitly ask for more information about who to contact. Instead, the email states that the sender has been assigned to assist Ibrahim and is asking him how they can help. Therefore, the condition is not valid, as there is no request for contact information.', 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+186  |    0 | agent@company.com    | Project Update
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': "The email from agent@company.com is asking Ibrahim how they can assist him, but it doesn't specify a request for more information about who to contact. It seems more like an offer to help directly with an undefined task or project rather than seeking contact details.", 'condition_is_verified': False}
+<context>
+ID   | Turn | Sender                | Object
+--------------------------------------------------
+186  |    0 | agent@company.com    | Project Update
+232  |    3 | agent@company.com    | RE: Contacts for hiring
+Mails details: 
+
+OBJECT: Project Update
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Dear Ibrahim,
+
+I hope this message finds you well. I got the order to assist you. How can I help?
+----
+OBJECT: RE: Contacts for hiring
+FROM: agent@company.com
+TO: ibrahim.mendoza@company.com
+CONTENT: Do you know who I can contact to get some sort of candidates list?
+----
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The second email from agent@company.com, titled "RE: Contacts for hiring," explicitly asks if Ibrahim knows who they can contact to obtain a list of candidates. This request aligns with the condition that the agent is reaching out to ask for more information about who to contact. Therefore, the condition is verified.', 'condition_is_verified': True}
