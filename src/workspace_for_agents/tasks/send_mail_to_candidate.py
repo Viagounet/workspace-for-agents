@@ -35,6 +35,12 @@ INSTRUCTIONS_MAPPING: dict[str, str] = {
 
 def setup_task(env: Environment) -> Task:
     IBRAHIM: Employee = env.get_employee_by_name("Ibrahim Mendoza")
+    env.agent.contacts_map = {
+        12: env.get_employee_by_name("Chen Wei"),
+        13: env.get_employee_by_name("Léa Dubois"),
+        14: IBRAHIM,
+        15: env.get_employee_by_name("Hermandes Garcia"),
+    }
     IBRAHIM.instructions.append(
         f"If you received a mail from {env.agent.email}, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing."
     )

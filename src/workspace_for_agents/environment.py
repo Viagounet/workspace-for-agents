@@ -1,5 +1,11 @@
 import json
-from workspace_for_agents.actions import CheckMailBox, ReadMail, SendEmail, Wait
+from workspace_for_agents.actions import (
+    CheckMailBox,
+    DisplayContacts,
+    ReadMail,
+    SendEmail,
+    Wait,
+)
 from workspace_for_agents.task import Task
 from workspace_for_agents.agent import Agent, HumanAgent
 from workspace_for_agents.employee import Employee
@@ -82,11 +88,10 @@ class Environment:
         plt.show()
 
     def run_task(self, task: Task, max_turns: int = 10) -> None:
-        self.agent.header = task.task_goal
+        self.agent.header = f"High-level objective: {task.task_goal}"
         action = None
         for turn in range(max_turns):
             while not isinstance(action, Wait):
-                self.current_turn = turn
                 action = self.agent.choose_action()
                 self.agent.execute_action(action)
 
@@ -94,7 +99,7 @@ class Environment:
                 actions = employee.choose_actions()
                 for action in actions:
                     employee.execute_action(action)
-
+            self.current_turn += 1
         for goal in task.completion_goals:
             print(f"{goal.name}: {goal.score}")
         self.current_turn = 0
@@ -123,6 +128,8 @@ def create_environnement_from_file(file_path: str) -> Environment:
         for employee_id in folder["has_access"]:
             employees[employee_id].add_files_from_folder(folder["path"])
 
-    agent = HumanAgent(available_actions=[CheckMailBox, ReadMail, SendEmail, Wait])
+    agent = HumanAgent(
+        available_actions=[DisplayContacts, CheckMailBox, ReadMail, SendEmail, Wait]
+    )
     env = Environment(agent=agent, employees=list(employees.values()))
     return env

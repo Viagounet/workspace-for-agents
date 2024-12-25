@@ -79,6 +79,18 @@ class SendEmail(Action):
         )
 
 
+class DisplayContacts(Action):
+    def __init__(self) -> None:
+        super().__init__()
+
+    @classmethod
+    def description(self) -> str:
+        return "display_contacts() # Displays all the contacts stored in your adress"
+
+    def execute(self, env):
+        env.agent.short_term_context += env.agent.formated_contacts
+
+
 class Wait(Action):
     def __init__(self) -> None:
         super().__init__()
@@ -122,6 +134,7 @@ def parse_action(action_str: str) -> Optional[Action]:
         "read_mail": ReadMail,
         "wait": Wait,
         "send_mail_to": SendEmail,
+        "display_contacts": DisplayContacts,
     }
 
     # Trim leading/trailing whitespace
