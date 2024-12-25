@@ -1498,3 +1498,123 @@ CONDITION = 'Condition should be valid if agent@company.com is reaching out to a
 
 
 {'argumentation': 'The condition is not valid as the provided instructions specifically guide on how to respond to emails from agent@company.com regarding the new hire. The condition assumes the agent is asking for contact information for the new hire process, but the provided context indicates the agent is inquiring about hiring needs, not who to contact.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If the agent contacts you, say that you are aware that the team (Ibrahim especially) is in need of a new hire.
+- If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The instructions specify that if a message from agent@company.com is received, a particular action should be taken regarding hiring a new employee with knowledge of WikiFactDiff. However, the condition checks if the agent is reaching out for assistance or additional information instead. There is no correlation between the condition stated and the instructions provided, as the instructions do not mention the need to assist the agent or provide additional information. Therefore, the condition is not verified based on the provided context.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If the agent contacts you, say that you are aware that the team (Ibrahim especially) is in need of a new hire.
+- If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The condition is not verified as it explicitly states that the condition should only be valid if agent@company.com is reaching out to assist you, or asking for additional information. However, based on the provided context, there's no specific mention of such an action or request from agent@company.com. The context only instructs how to respond if agent@company.com asks for new hire recommendations or contacts in a specific scenario, but doesn't mention them reaching out for help or information currently. Therefore, without evidence of such an outreach, the condition remains invalid.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If the agent contacts you, say that you are aware that the team (Ibrahim especially) is in need of a new hire.
+- If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "Based on the provided context, the condition is valid because it mentions the specific prerequisite of receiving an email from agent@company.com for it to be considered active. If agent@company.com is reaching out, then it's likely seeking assistance or further information. Since the context states that your response involves hiring a new employee knowledgeable about WikiFactDiff upon contact by this agent email address, it supports the condition being valid when such a contact is initiated.", 'condition_is_verified': True}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If the agent contacts you, say that you are aware that the team (Ibrahim especially) is in need of a new hire.
+- If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The condition is not verified because the instruction provided in the context specifically addresses how to respond if the contact is made by agent@company.com regarding a new hire. The condition itself is asking about responding to a request for more information about who to contact, not explicitly tied to the hiring instructions in the context.', 'condition_is_verified': False}

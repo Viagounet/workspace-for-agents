@@ -3,6 +3,8 @@ from workspace_for_agents.actions import (
     CheckMailBox,
     DisplayContacts,
     ReadMail,
+    ReadMarkdownFile,
+    ReadPDFPage,
     SendEmail,
     Wait,
 )
@@ -139,7 +141,15 @@ def create_environnement_from_file(file_path: str) -> Environment:
             employees[employee_id].add_files_from_folder(folder["path"])
 
     agent = HumanAgent(
-        available_actions=[DisplayContacts, CheckMailBox, ReadMail, SendEmail, Wait]
+        available_actions=[
+            DisplayContacts,
+            CheckMailBox,
+            ReadMail,
+            SendEmail,
+            ReadPDFPage,
+            ReadMarkdownFile,
+            Wait,
+        ]
     )
     env = Environment(agent=agent, employees=list(employees.values()))
     return env

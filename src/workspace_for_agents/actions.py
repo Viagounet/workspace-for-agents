@@ -1,5 +1,7 @@
-from abc import ABC, abstractmethod
 import ast
+import fitz
+
+from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Callable, Optional
 
@@ -79,6 +81,66 @@ class SendEmail(Action):
         )
 
 
+def get_pdf_page_content_with_fitz(pdf_path, page_number):
+    """
+    Extracts and returns the content of a specified page from a PDF using PyMuPDF.
+
+    :param pdf_path: Path to the PDF file.
+    :param page_number: Page number to extract (1-based index).
+    :return: Text content of the specified page or an error message.
+    """
+    try:
+        # Open the PDF
+        pdf_document = fitz.open(pdf_path)
+        # Pages are zero-indexed in PyMuPDF, so subtract 1 from the page_number
+        if 1 <= page_number <= len(pdf_document):
+            page = pdf_document[page_number - 1]
+            page_content = page.get_text()
+            return page_content if page_content else "No text found on this page."
+        else:
+            return f"Invalid page number. The document has {len(pdf_document)} pages."
+    except FileNotFoundError:
+        return "The specified PDF file was not found."
+    except Exception as e:
+        return f"An error occurred: {e}"
+    finally:
+        # Ensure the document is closed after processing
+        try:
+            pdf_document.close()
+        except NameError:
+            pass
+
+
+class ReadPDFPage(Action):
+    def __init__(self, pdf_file_path: str, page: int):
+        super().__init__()
+        self.pdf_file_path = pdf_file_path
+        self.page = page
+
+    @classmethod
+    def description(self) -> str:
+        return "read_pdf_page(pdf_file_path: str, page_number: int) # Returns a string of the content of a PDF (note: pages enumeration start at 1)"
+
+    def execute(self, env):
+        env.agent.short_term_context += get_pdf_page_content_with_fitz(
+            self.pdf_file_path, self.page
+        )
+
+
+class ReadMarkdownFile(Action):
+    def __init__(self, markdown_path: str):
+        super().__init__()
+        self.markdown_path = markdown_path
+
+    @classmethod
+    def description(self) -> str:
+        return "read_markdown(markdown_path: str) # Returns a string of the content of a Markdown file"
+
+    def execute(self, env):
+        with open(self.markdown_path, "r", encoding="utf-8") as f:
+            env.agent.short_term_context += f.read()
+
+
 class DisplayContacts(Action):
     def __init__(self) -> None:
         super().__init__()
@@ -135,6 +197,8 @@ def parse_action(action_str: str) -> Optional[Action]:
         "wait": Wait,
         "send_mail_to": SendEmail,
         "display_contacts": DisplayContacts,
+        "read_pdf_page": ReadPDFPage,
+        "read_markdown": ReadMarkdownFile,
     }
 
     # Trim leading/trailing whitespace
