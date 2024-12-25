@@ -29,19 +29,12 @@ def received_mail_from_agent(employee: Employee, env: Environment) -> bool:
     return False
 
 
-def setup_task(env: Environment) -> Task:
-    for employee in env.employees:
-        action = ConditionedAction(
-            lambda e=employee: received_mail_from_agent(e, env),
-            SendEmail(
-                env.agent.email,
-                "<Template>",
-                f"dynamic::Context -> {employee.all_important_infos}\n\nReply accordingly to {env.agent.email} according to the context.",
-            ),
-            0,
-        )
-        employee.preplanned_actions["reply"] = action
+INSTRUCTIONS_MAPPING: dict[str, str] = {
+    "Jacob Morris": "If the agent contacts you, please say that you don't know much, and that the agent should directly contact Ibrahim."
+}
 
+
+def setup_task(env: Environment) -> Task:
     IBRAHIM: Employee = env.get_employee_by_name("Ibrahim Mendoza")
     IBRAHIM.instructions.append(
         f"If you received a mail from {env.agent.email}, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing."
@@ -91,6 +84,23 @@ Ibrahim Mendoza""",
         score=-10,
         requires_completion=[],
     )
+
+    for employee in env.employees:
+        if employee.id == IBRAHIM.id:
+            continue
+        if employee.name in INSTRUCTIONS_MAPPING.keys():
+            employee.instructions.append(INSTRUCTIONS_MAPPING[employee.name])
+        action = ConditionedAction(
+            lambda e=employee: received_mail_from_agent(e, env),
+            SendEmail(
+                env.agent.email,
+                "<Template>",
+                f"dynamic::Context -> {employee.all_important_infos}\n\nReply accordingly to {env.agent.email} according to the context.",
+            ),
+            0,
+        )
+        employee.preplanned_actions["reply"] = action
+
     TALKED_TO_IBRAHIM = Goal(
         name="talk-to-ibrahim",
         conditions=[lambda: has_sent_email(env.agent, IBRAHIM.email)],

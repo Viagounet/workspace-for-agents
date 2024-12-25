@@ -1,0 +1,749 @@
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The condition is not verified because there is no mention of any emails from agent@company.com. The provided context states 'No emails yet!' which implies that there has been no communication from agent@company.com or any agent asking for additional information or offering assistance. Without any evidence of such an email, we cannot confirm that the condition is met.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The provided context indicates that there are no emails yet, and only points to available files regarding machine learning topics. There is no mention of any correspondence from an email address such as agent@company.com or any communication asking for additional information or offering assistance. Therefore, based on the available context, the condition related to the specific email address does not apply and is not verified.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The condition should be valid only if there is evidence of communication from 'agent@company.com' regarding assistance or a request for additional information. Based on the current context provided, there is no mention of any email communications, nor is there any indication that 'agent@company.com' has reached out. Therefore, the condition is not verified because the necessary context, which is the presence of an email from the specific agent, is absent.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'Based on the context provided, there is no mention of any communication from an email address agent@company.com. The context lists available files related to machine learning documents, but there is no reference to any email interactions or a topic concerning additional assistance or information requests by an agent from the specified email address. Thus, the condition is not verified as there is no evidence supporting it within the given context.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The provided context does not contain any information about an email from agent@company.com reaching out to assist or asking for additional information. It simply lists available files in a 'machine-learning' directory. Without any mention of an email interaction, the condition is not verified.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'Based on the given context, the validation of the condition is not related to whether agent@company.com is reaching out to assist or asking for additional information. The instructions specifically state that action is only necessary if the email is from agent@company.com suggesting hiring a candidate with knowledge of WikiFactDiff. Therefore, the condition is not verified since it does not align with the provided instruction.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The instructions specify a very specific scenario where action is required: receiving an email from agent@company.com about hiring a new employee knowledgeable in WikiFactDiff. The condition as stated refers to any general assistance or request for information, which does not match the specific criteria given. Therefore, the condition is not valid as it does not meet the specified criteria for action.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition is not valid because the context only specifies an interaction if agent@company.com is sending a mail regarding hiring a new employee with solid knowledge about WikiFactDiff. It does not mention assisting or asking for additional information in a general sense.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition as stated requires an email from agent@company.com asking for assistance or requesting additional information. In the provided context, there is no mention of any email from agent@company.com that fits this criteria. Therefore, the condition is not valid since it is not mentioned in the context that agent@company.com is reaching out in any way.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition should only be considered when there is a specific email from agent@company.com. The instruction in the context is clear that action (hiring a new employee) is only required if there is an email from agent@company.com. There is no mention of requiring additional information or assistance in the instructions, just the condition of receiving an email from that specific address. Therefore, the condition is not met according to the instructions provided.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The context provides a specific instruction for a scenario where agent@company.com sends a mail, which involves hiring a new employee knowledgeable in WikiFactDiff. Since the provided condition mentions agent@company.com reaching out to assist or ask for additional information, it aligns with the given scenario because both involve interaction initiated by agent@company.com. Therefore, the condition can be considered valid as it encompasses the action needed when correspondence from this address is received.', 'condition_is_verified': True}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The given condition is not about receiving emails from agent@company.com. It states something different, specifically about receiving an email from agent@company.com to request the hiring of an employee knowledgeable in WikiFactDiff. Therefore, the stated condition about asking for more contact information does not align with the instructions provided.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The context specifies that if an email is received from agent@company.com, the response should be to express interest in hiring someone knowledgeable about WikiFactDiff. It does not mention providing additional information or addressing inquiries from agent@company.com. Therefore, the condition, which involves assisting or asking for more information, is not relevant to the instructions, as the instructions are specific about hiring-related responses only. The context-specific condition is not verified because there is no provision for assisting or providing additional information in the context of the current instructions.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition as stated is valid if the email is from agent@company.com with the purpose of assisting or requesting additional information. However, based on the context provided, the specific scenario in which you need to act is very precise: you must receive an email about hiring a new employee with knowledge of WikiFactDiff, and the email must be from agent@company.com. If the communication does not mention hiring an employee with WikiFactDiff knowledge, or it does not come from agent@company.com, the specific instructions do not apply. Thus, the presented condition is partially overlapping but not fully aligned with the detailed instructions you were given, which makes the condition not strictly valid in this narrow context.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition should be valid because the instructions specify that if you receive an email from agent@company.com regarding hiring a new employee with knowledge of WikiFactDiff, you should respond accordingly. If agent@company.com is reaching out to assist or asking for information related to this context, it aligns with the instructions. Therefore, the condition is deemed valid as it matches the provided instructions.', 'condition_is_verified': True}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': "The instruction provided states that a specific action should be taken only if an email is received from 'agent@company.com' regarding hiring a new employee with expertise in WikiFactDiff. The condition involves checking if 'agent@company.com' is reaching out for more information about who to contact. The context doesn't indicate that the agent's email is about who to contact, but rather about hiring a candidate with knowledge of WikiFactDiff. Therefore, the condition as stated is not directly aligned with the scenario described in the instructions, where the email's purpose is hiring, not requesting contact information.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition states that it should be valid if the contact is from agent@company.com offering assistance or requesting additional information. The instructions mention acting only in response to emails from agent@company.com to hire someone knowledgeable about WikiFactDiff. Therefore, if agent@company.com is reaching out for such purposes, the condition can be considered valid.', 'condition_is_verified': True}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The given context specifies that if an email is received from agent@company.com, the response should be related to hiring a candidate with knowledge about WikiFactDiff. It does not mention any details about contacting someone or providing additional contact information specifically. Therefore, the condition is not valid as it does not align with the instructions provided in the context.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The condition is not valid in the given context. The instructions provided state that a specific email from agent@company.com regarding hiring someone with knowledge about WikiFactDiff should be responded to by mentioning hiring intentions. However, there is no information indicating that an inquiry for more information about who to contact should be addressed. Therefore, the condition is not directly applicable to the instructions given.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': "The condition is not valid because there's no mention in the provided instructions that agent@company.com needs to contact someone or that they are seeking additional contact information. The instructions only specify a certain action if an email from agent@company.com mentions hiring someone with knowledge about WikiFactDiff. Thus, the condition as described does not align with the instructions.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to ask for more information about who to contact.'
+
+
+
+{'argumentation': 'The condition specified is not valid because the instructions provided for interacting with the agent do not mention any actions to be taken when the agent is asking for more information about who to contact. The specific action to be taken is when an email is received from agent@company.com about hiring a new employee knowledgeable in WikiFactDiff, which is unrelated to inquiring about contacts.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition is not valid because in the provided context, the specific interaction outlined involves agent@company.com reaching out to hire a new employee for knowledge related to WikiFactDiff. It does not cover assistance from the agent or providing additional information. The instruction is strictly about hiring and informing once a candidate is found, without any mention of assistance or information requests.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition requires that agent@company.com is reaching out specifically to assist you or asking for additional information. However, from the provided context, the only instruction related to agent@company.com involves hiring a new employee with knowledge about WikiFactDiff. The context does not mention that the agent is meant to assist or ask for more information. Therefore, the condition does not match the instruction outlined in the context.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition is not valid based on the given context. The instructions only specify a course of action if an email is received from agent@company.com about hiring a new employee knowledgeable in WikiFactDiff. The condition stated talks about agent@company.com reaching out for assistance or additional information, which is not the scenario provided for action according to the instructions. Therefore, the specified condition does not align with the instructions in the provided context.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The context specifies that a response is only necessary if you receive a mail from agent@company.com indicating they would like to hire a new employee. There is no mention of needing to verify the condition based on whether the agent is reaching out to assist or ask for more information. Therefore, the provided condition is not aligned with the specific criteria outlined in the context.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': "The condition provided is not directly linked to the specific context of receiving an email from 'agent@company.com'. The context in the instructions strictly guides towards a specific action (hiring a new employee knowledgeable about WikiFactDiff) only when an email is received from the particular email address. There are no broader or more general instructions about providing assistance to the agent or furnishing additional information. So, unless the email is precisely about hiring someone with knowledge of WikiFactDiff, other inquiries do not meet this condition.", 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition is not verified because there is nothing in the instructions that specifies taking any action if agent@company.com is reaching out to assist or asking for additional information. The only specified action is to respond if the email from agent@company.com involves hiring a new employee with knowledge about WikiFactDiff.', 'condition_is_verified': False}
+<context>
+No emails yet!Mails details: 
+
+Available files:
+
+machine-learning/
+├── conllueditor.md
+├── essL.md
+└── wikifactdiff.md
+Contacts:
+
+- Chen Wei - (email: chen.wei@company.com)
+- Léa Dubois - (email: lea.dubois@company.com)
+
+
+General instructions for interacting with the agent: 
+
+Instructions:
+If you received a mail from agent@company.com, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing.
+</context>
+
+
+According to the provided context, would you say the following condition is valid?
+
+CONDITION = 'Condition should be valid if agent@company.com is reaching out to assist you, or is asking for additional information.'
+
+
+
+{'argumentation': 'The condition states that it should be valid if agent@company.com is reaching out to assist you or is asking for additional information. However, the instructions indicate a specific scenario where you only respond if you received a mail specifically about hiring a new employee with knowledge about WikiFactDiff, not just any assistance or request for information. Therefore, the condition is not automatically valid simply because agent@company.com is reaching out; it must pertain specifically to the hiring context mentioned in the instructions.', 'condition_is_verified': False}

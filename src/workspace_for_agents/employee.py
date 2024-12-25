@@ -32,6 +32,13 @@ class Employee:
     def formated_instructions(self):
         return "Instructions:\n" + "\n- ".join(self.instructions)
 
+    @property
+    def formated_contacts(self):
+        contacts = "Contacts:\n\n"
+        for id, contact_info in self.contacts_map.items():
+            contacts += f"- {contact_info.name} - (email: {contact_info.email})\n"
+        return contacts
+
     def add_contact(self, employee: Self):
         if employee.id in self.contacts_map.keys():
             print(
@@ -71,6 +78,8 @@ class Employee:
         for email in self.email_box.emails:
             infos += email.string + "\n----\n"
         infos += "Available files:\n\n" + self.list_available_files()
+        infos += f"{self.formated_contacts}\n\n"
+        infos += f"General instructions for interacting with the agent: \n\n{self.formated_instructions}"
         return infos
 
     def choose_actions(self) -> list[Action]:
