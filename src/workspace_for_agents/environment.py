@@ -83,10 +83,12 @@ class Environment:
 
     def run_task(self, task: Task, max_turns: int = 10) -> None:
         self.agent.header = task.task_goal
+        action = None
         for turn in range(max_turns):
-            self.current_turn = turn
-            action = self.agent.choose_action()
-            self.agent.execute_action(action)
+            while not isinstance(action, Wait):
+                self.current_turn = turn
+                action = self.agent.choose_action()
+                self.agent.execute_action(action)
 
             for employee in self.employees:
                 actions = employee.choose_actions()
@@ -95,7 +97,6 @@ class Environment:
 
         for goal in task.completion_goals:
             print(f"{goal.name}: {goal.score}")
-        print(self.get_employee_by_email("ibrahim.mendoza@company.com").email_box)
         self.current_turn = 0
 
 

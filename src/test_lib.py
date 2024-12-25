@@ -11,5 +11,4 @@ os.environ["VERBOSE_LOG"] = str(args.verbose)
 
 env = create_environnement_from_file("src/envs/test_env_1.json")
 task = setup_task(env)
-print(env.get_employee_by_name("Ibrahim Mendoza").instructions)
 env.run_task(task)

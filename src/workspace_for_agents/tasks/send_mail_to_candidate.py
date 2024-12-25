@@ -6,7 +6,6 @@ from workspace_for_agents.utils import semantic_is_true
 
 
 def has_sent_email(employee: Employee, target: str) -> bool:
-    print(f"Checking mail for {employee.name}: {employee.email_box.emails}")
     for action in employee.actions:
         if isinstance(action, SendEmail):
             if action.sender == employee.email and action.receiver == target:
