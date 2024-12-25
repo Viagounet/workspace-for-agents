@@ -21,7 +21,24 @@ def has_not_received_mail(env: Environment, employee: Employee, max_turn: int) -
     return False
 
 
+def received_mail_from_agent(employee: Employee, env: Environment) -> bool:
+    for mail in employee.email_box.emails:
+        if mail.sender == env.agent.email:
+            return True
+    return False
+
+
 def setup_task(env: Environment) -> Task:
+    for employee in env.employees:
+        employee.preplanned_actions["reply"] = ConditionedAction(
+            lambda: received_mail_from_agent(employee, env),
+            SendEmail(
+                env.agent.email,
+                "<Template>",
+                f"dynamic::Context -> {employee.all_important_infos}\n\nReply accordingly to {env.agent.email} according to the context.",
+            ),
+            0,
+        )
     IBRAHIM: Employee = env.get_employee_by_name("Ibrahim Mendoza")
     IBRAHIM.instructions.append(
         f"If you received a mail from {env.agent.email}, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing."
