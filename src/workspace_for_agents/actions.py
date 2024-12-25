@@ -198,3 +198,10 @@ class ConditionedAction:
     score: int
     requires_completion: list = field(default_factory=list)
     is_completed: bool = False
+
+    def add_requirement(self, requirement):
+        self.requires_completion.append(requirement)
+
+    def complete_requirement(self, requirement):
+        if requirement in self.requires_completion:
+            self.requires_completion.remove(requirement)

@@ -1,7 +1,6 @@
 import os
 from typing import Self
 
-from openai import OpenAI
 
 from workspace_for_agents.mail import EmailBox
 from workspace_for_agents.actions import Action, ConditionedAction
@@ -42,8 +41,6 @@ class Employee:
             self.contacts_map[employee.id] = employee
 
     def add_files_from_folder(self, folder_path: str):
-        import os
-
         # Create root folder
         folder_name = os.path.basename(folder_path)
         root_folder = Folder(folder_path, folder_name)
@@ -86,6 +83,7 @@ class Employee:
                     break
             if not all_requirements_completed:
                 continue
+
             if not preplanned_action.is_completed and preplanned_action.condition():
                 actions.append(preplanned_action.linked_action)
                 preplanned_action.is_completed = True

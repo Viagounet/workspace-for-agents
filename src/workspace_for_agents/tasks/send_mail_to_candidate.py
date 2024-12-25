@@ -6,6 +6,7 @@ from workspace_for_agents.utils import semantic_is_true
 
 
 def has_sent_email(employee: Employee, target: str) -> bool:
+    print(f"Checking mail for {employee.name}: {employee.email_box.emails}")
     for action in employee.actions:
         if isinstance(action, SendEmail):
             if action.sender == employee.email and action.receiver == target:
@@ -30,8 +31,8 @@ def received_mail_from_agent(employee: Employee, env: Environment) -> bool:
 
 def setup_task(env: Environment) -> Task:
     for employee in env.employees:
-        employee.preplanned_actions["reply"] = ConditionedAction(
-            lambda: received_mail_from_agent(employee, env),
+        action = ConditionedAction(
+            lambda e=employee: received_mail_from_agent(e, env),
             SendEmail(
                 env.agent.email,
                 "<Template>",
@@ -39,6 +40,8 @@ def setup_task(env: Environment) -> Task:
             ),
             0,
         )
+        employee.preplanned_actions["reply"] = action
+
     IBRAHIM: Employee = env.get_employee_by_name("Ibrahim Mendoza")
     IBRAHIM.instructions.append(
         f"If you received a mail from {env.agent.email}, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing."
