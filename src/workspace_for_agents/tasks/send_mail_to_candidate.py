@@ -28,11 +28,6 @@ def received_mail_from_agent(employee: Employee, env: Environment) -> bool:
     return False
 
 
-INSTRUCTIONS_MAPPING: dict[str, str] = {
-    "Jacob Morris": "If the agent contacts you, please say that you don't know much, and that the agent should directly contact Ibrahim."
-}
-
-
 def setup_task(env: Environment) -> Task:
     IBRAHIM: Employee = env.get_employee_by_name("Ibrahim Mendoza")
     env.agent.contacts_map = {
@@ -41,6 +36,19 @@ def setup_task(env: Environment) -> Task:
         14: IBRAHIM,
         15: env.get_employee_by_name("Hermandes Garcia"),
     }
+    for ds_employee in env.get_employees_by_tag(["data"]):
+        ds_employee.instructions.append(
+            "If the agent contacts you, say that you are aware that the team (Ibrahim especially) is in need of a new hire."
+        )
+    for hr_employee in env.get_employees_by_tag(["HR"]):
+        hr_employee.instructions.append(
+            "If the agent contacts you, say that you know that Madeline has a list of potential candidates."
+        )
+    for technician in env.get_employees_by_tag(["dev", "network"]):
+        technician.instructions.append(
+            "You don't know anything about the agent's request. Need to redirect to more adequate people."
+        )
+
     IBRAHIM.instructions.append(
         f"If you received a mail from {env.agent.email}, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing."
     )
@@ -93,8 +101,6 @@ Ibrahim Mendoza""",
     for employee in env.employees:
         if employee.id == IBRAHIM.id:
             continue
-        if employee.name in INSTRUCTIONS_MAPPING.keys():
-            employee.instructions.append(INSTRUCTIONS_MAPPING[employee.name])
         action = ConditionedAction(
             lambda e=employee: received_mail_from_agent(e, env),
             SendEmail(

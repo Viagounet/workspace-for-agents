@@ -14,6 +14,7 @@ class Employee:
         name: str,
         email: str,
         additional_information: str,
+        tags: list[str] = [],
     ):
         self.id = id
         self.name = name
@@ -27,6 +28,7 @@ class Employee:
         self.email_box = EmailBox()
         self.preplanned_actions: dict[str, ConditionedAction] = {}
         self.instructions: list[str] = []
+        self.tags = tags
 
     @property
     def formated_instructions(self):

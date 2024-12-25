@@ -24,6 +24,15 @@ class Environment:
     def feed_fact(self, employee: Employee, fact: str):
         employee.known_facts.append(fact)
 
+    def get_employees_by_tag(self, tags: list[str]) -> list[Employee]:
+        employees = []
+        for employee in self.employees:
+            for tag in employee.tags:
+                if tag.lower() in [tag.lower() for tag in tags]:
+                    employees.append(employee)
+                    break
+        return employees
+
     def get_employee_by_name(self, name: str) -> Employee:
         for employee in self.employees:
             if employee.name == name:
@@ -87,7 +96,7 @@ class Environment:
         plt.axis("off")
         plt.show()
 
-    def run_task(self, task: Task, max_turns: int = 10) -> None:
+    def run_task(self, task: Task, max_turns: int = 100) -> None:
         self.agent.header = f"High-level objective: {task.task_goal}"
         action = None
         for turn in range(max_turns):
@@ -116,6 +125,7 @@ def create_environnement_from_file(file_path: str) -> Environment:
             name=employee_info["name"],
             email=employee_info["email"],
             additional_information=employee_info["additional_information"],
+            tags=employee_info["tags"],
         )
 
     # Setting up relationships
