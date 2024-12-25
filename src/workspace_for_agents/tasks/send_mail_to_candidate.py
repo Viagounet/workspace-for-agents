@@ -12,10 +12,14 @@ def has_sent_email(employee: Employee, target: str) -> bool:
                 return True
     return False
 
+
 def has_not_received_mail(env: Environment, employee: Employee, max_turn: int) -> bool:
-    if env.current_turn > max_turn and env.agent.email not in [mail.sender for mail in employee.email_box.emails]:
+    if env.current_turn > max_turn and env.agent.email not in [
+        mail.sender for mail in employee.email_box.emails
+    ]:
         return True
     return False
+
 
 def setup_task(env: Environment) -> Task:
     IBRAHIM: Employee = env.get_employee_by_name("Ibrahim Mendoza")
@@ -52,9 +56,19 @@ def setup_task(env: Environment) -> Task:
         SendEmail(
             env.agent.email,
             "RE: Requiring immediate help.",
-            "Dude, you're super late about your task, can you PLEASE help me with the hiring process for WikiFactDiff??\nIbrahim.",
+            """Dear Agent,
+
+I hope this message finds you well. I am writing to express my concern regarding the delay in the hiring process for WikiFactDiff. It has been quite some time since we initiated this process, and I cannot help but wonder why there has been a lack of communication and action on your part.
+
+The urgency of filling these positions cannot be understated, and it is crucial that we move forward without further delays. I expect prompt attention 
+to this matter and an update on the current status as soon as possible. If needed, please contact Madeline.
+
+Thank you for addressing this issue immediately.
+
+Best regards,
+Ibrahim Mendoza""",
         ),
-        score=-5,
+        score=-10,
         requires_completion=[],
     )
     TALKED_TO_IBRAHIM = Goal(

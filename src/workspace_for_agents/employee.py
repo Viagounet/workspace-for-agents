@@ -28,7 +28,6 @@ class Employee:
         self.email_box = EmailBox()
         self.preplanned_actions: dict[str, ConditionedAction] = {}
         self.instructions: list[str] = []
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     @property
     def formated_instructions(self):

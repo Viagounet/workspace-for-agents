@@ -2,8 +2,7 @@ import os
 from typing import Callable, Optional
 import openai
 from pydantic import BaseModel, Field
-
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+from workspace_for_agents.llm_client import client
 
 
 class ConditionVerification(BaseModel):

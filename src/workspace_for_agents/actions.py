@@ -26,14 +26,19 @@ class ReadMail(Action):
 
     @classmethod
     def description(self) -> str:
-        return "read_mail(mail_id: int) # Reads the mail associated with the provided id`"
+        return (
+            "read_mail(mail_id: int) # Reads the mail associated with the provided id`"
+        )
 
     def execute(self, env):
         try:
             mail_id = int(self.mail_id)
             env.agent.short_term_context += env.agent.email_box.read_email(mail_id)
         except ValueError:
-            env.agent.short_term_context += f"ID should be an integer. `{self.mail_id}` is not an integer."
+            env.agent.short_term_context += (
+                f"ID should be an integer. `{self.mail_id}` is not an integer."
+            )
+
 
 class CheckMailBox(Action):
     def __init__(self) -> None:
@@ -124,7 +129,7 @@ def parse_action(action_str: str) -> Optional[Action]:
 
     # Step 1: Try to parse as a Python expression
     try:
-        tree = ast.parse(action_str, mode='eval')
+        tree = ast.parse(action_str, mode="eval")
     except SyntaxError:
         # If it's not valid Python, we cannot parse
         return NoActionAfterParsing()
