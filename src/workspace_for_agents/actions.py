@@ -4,7 +4,7 @@ import fitz
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Any, Callable, Optional, Self
+from typing import Any, Callable, Optional
 
 from workspace_for_agents.mail import Email
 

@@ -1,5 +1,4 @@
 from functools import cached_property
-import os
 from typing import Callable
 from workspace_for_agents.llm_client import client
 
@@ -28,7 +27,6 @@ class EmailBox:
         if not requested_email:
             return f"The email with id `{mail_id}` was not found."
         return requested_email.string
-
 
     def display_all_in_chronological_order(self) -> str:
         """
@@ -62,7 +60,8 @@ class EmailBox:
 
         # Join the email representations with a blank line in between
         return "\n\n".join(output)
-    
+
+
 class Email:
     def __init__(
         self, sender: str, receiver: str, object: str, content: str, turn: int

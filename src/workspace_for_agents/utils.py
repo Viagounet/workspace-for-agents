@@ -1,4 +1,3 @@
-import os
 from typing import Callable, Optional
 from pydantic import BaseModel, Field
 from workspace_for_agents.llm_client import client

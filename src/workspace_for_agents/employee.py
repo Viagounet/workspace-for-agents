@@ -77,8 +77,12 @@ class Employee:
     def all_important_infos(self) -> str:
         infos = ""
         infos += f"<Mails>\n{self.email_box.display_all_in_chronological_order()}\n</Mails>\n"
-        infos += f"<Available files>\n{self.list_available_files()}\n</Available files>\n"
-        infos += f"<Known contacts>\n{self.formated_contacts}\n</Known contacts>\n\n===\n\n"
+        infos += (
+            f"<Available files>\n{self.list_available_files()}\n</Available files>\n"
+        )
+        infos += (
+            f"<Known contacts>\n{self.formated_contacts}\n</Known contacts>\n\n===\n\n"
+        )
         infos += f"General instructions for interacting with the agent: \n\n{self.formated_instructions}"
         return infos
 
