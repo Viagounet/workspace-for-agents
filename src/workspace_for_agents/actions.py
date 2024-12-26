@@ -100,7 +100,8 @@ class SendEmail(Action):
             )
         if isinstance(self.content, Callable):
             self.dynamic_content = email.content
-        target_employee.email_box.emails.append(email)
+        target_employee.email_box.received_emails.append(email)
+        self.source.email_box.sent_emails.append(email)
 
     @property
     def json(self):

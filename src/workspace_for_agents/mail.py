@@ -6,20 +6,21 @@ from workspace_for_agents.llm_client import client
 
 class EmailBox:
     def __init__(self) -> None:
-        self.emails: list[Email] = []
+        self.received_emails: list[Email] = []
+        self.sent_emails: list[Email] = []
 
     def display(self) -> str:
-        if not self.emails:
+        if not self.received_emails:
             return "No emails yet!"
         email_box = "ID   | Turn | Sender                | Object\n"
         email_box += "-" * 50 + "\n"
-        for email in self.emails:
+        for email in self.received_emails:
             email_box += f"{str(email.id):4s} | {email.turn:4d} | {email.sender:20s} | {email.object}\n"
         return email_box
 
     def read_email(self, mail_id: int) -> str:
         requested_email = None
-        for email in self.emails:
+        for email in self.received_emails:
             if email.id == mail_id:
                 requested_email = email
                 break
@@ -29,6 +30,39 @@ class EmailBox:
         return requested_email.string
 
 
+    def display_all_in_chronological_order(self) -> str:
+        """
+        Returns a string with all the mails (both received and sent) in
+        chronological order (based on their 'turn' attribute). If two or
+        more emails have the same turn, the received mail(s) appear
+        before the sent mail(s). This method uses the Email.string
+        property to include the full content of each email.
+        """
+
+        # Combine emails along with a marker for type ('received' or 'sent')
+        all_emails_tagged = [(email, "received") for email in self.received_emails] + [
+            (email, "sent") for email in self.sent_emails
+        ]
+
+        if not all_emails_tagged:
+            return "No emails yet!"
+
+        # Sort primarily by 'turn' ascending, secondarily by type:
+        #   'received' (0) should come before 'sent' (1) if turn is the same
+        def sort_key(item):
+            email, mail_type = item
+            return (email.turn, 0 if mail_type == "received" else 1)
+
+        all_emails_sorted = sorted(all_emails_tagged, key=sort_key)
+
+        # Build the output string using the email.string method
+        output = []
+        for email, mail_type in all_emails_sorted:
+            output.append(email.string)
+
+        # Join the email representations with a blank line in between
+        return "\n\n".join(output)
+    
 class Email:
     def __init__(
         self, sender: str, receiver: str, object: str, content: str, turn: int

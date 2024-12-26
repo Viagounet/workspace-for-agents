@@ -20,14 +20,14 @@ def has_sent_email(employee: Employee, target: str) -> bool:
 
 def has_not_received_mail(env: Environment, employee: Employee, max_turn: int) -> bool:
     if env.current_turn > max_turn and env.agent.email not in [
-        mail.sender for mail in employee.email_box.emails
+        mail.sender for mail in employee.email_box.received_emails
     ]:
         return True
     return False
 
 
 def received_mail_from_agent(employee: Employee, env: Environment) -> bool:
-    for mail in employee.email_box.emails:
+    for mail in employee.email_box.received_emails:
         if mail.sender == env.agent.email:
             return True
     return False
@@ -35,7 +35,7 @@ def received_mail_from_agent(employee: Employee, env: Environment) -> bool:
 
 def agent_mail_was_recent(employee: Employee, env: Environment) -> bool:
     mail_was_recent = False
-    for mail in employee.email_box.emails:
+    for mail in employee.email_box.received_emails:
         if mail.sender == env.agent.email and abs(mail.turn - env.current_turn) == 0:
             mail_was_recent = True
     return mail_was_recent
