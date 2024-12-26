@@ -56,7 +56,7 @@ def setup_task(env: Environment) -> Task:
             "If the agent contacts you asking for directions about what to do, say that you are aware that the team (Ibrahim especially) is in need of a new hire."
         )
         ds_employee.instructions.append(
-            "If the agent contacts you for anything else, say that you do not have any more information."
+            "If the agent contacts you for anything else, try to assist him the best you can. If you don't have enough information, reply by saying you don't know."
         )
     for hr_employee in env.get_employees_by_tag(["HR"]):
         if "Madeline" in hr_employee.name:
@@ -149,7 +149,7 @@ Ibrahim Mendoza""",
             SendEmail(
                 env.agent.email,
                 "<Template>",
-                f"dynamic::Context -> {employee.all_important_infos}\n\nReply accordingly to {env.agent.email} according to the context.",
+                lambda e=employee: f"dynamic::Context -> {e.all_important_infos}\n\nReply accordingly to {env.agent.email} according to the context.",
             ),
             0,
             stays_after_completion=True,

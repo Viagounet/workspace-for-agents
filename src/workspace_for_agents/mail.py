@@ -1,5 +1,6 @@
 from functools import cached_property
 import os
+from typing import Callable
 from workspace_for_agents.llm_client import client
 
 
@@ -36,7 +37,12 @@ class Email:
         self.receiver = receiver
         self.object = object
         self._log = {}
+
+        if isinstance(content, Callable):
+            content = content()
+
         if "dynamic::" in content:
+            content = content.split("dynamic::")[1]
             messages = [
                 {
                     "role": "developer",

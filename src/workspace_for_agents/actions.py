@@ -74,6 +74,7 @@ class SendEmail(Action):
         self.receiver = receiver
         self.object = object
         self.content = content
+        self.dynamic_content: Optional[str] = None
 
     @classmethod
     def description(self) -> str:
@@ -97,16 +98,20 @@ class SendEmail(Action):
                 self.source.name,
                 content=email._log,
             )
+        if isinstance(self.content, Callable):
+            self.dynamic_content = email.content
         target_employee.email_box.emails.append(email)
 
     @property
     def json(self):
-        return {
+        output = {
             "sender": self.sender,
             "receiver": self.receiver,
             "object": self.object,
-            "content": self.content,
+            "content": self.dynamic_content if self.dynamic_content else self.content,
         }
+        self.dynamic_content = None
+        return output
 
 
 def get_pdf_page_content_with_fitz(pdf_path, page_number):
