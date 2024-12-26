@@ -95,6 +95,13 @@ class Employee:
             if not all_requirements_completed:
                 continue
 
+            if hasattr(self, "env") and os.environ["LOG_CONDITIONS"] == "True":
+                print("LOGGING COND")
+                self.env.add_log(
+                    "preplanned_action_cond",
+                    self.name,
+                    preplanned_action.condition._evaluate(),
+                )
             if (
                 not preplanned_action.is_completed
                 or preplanned_action.stays_after_completion

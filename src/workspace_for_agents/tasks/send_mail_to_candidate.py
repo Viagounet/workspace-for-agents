@@ -76,9 +76,18 @@ def setup_task(env: Environment) -> Task:
         f"If you received a mail from {env.agent.email}, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing."
     )
     IBRAHIM.preplanned_actions["send-mail-agent-need-hire"] = ConditionedAction(
-        lambda: semantic_is_true(
-            f"Condition should be valid if {env.agent.email} is reaching out to assist you, or is asking for additional information.",
-            IBRAHIM.all_important_infos,
+        AndCondition(
+            Condition(
+                lambda: received_mail_from_agent(IBRAHIM, env),
+                name="agent-sent-mail-to-ibrahim",
+            ),
+            Condition(
+                lambda: semantic_is_true(
+                    f"Condition should be valid if {env.agent.email} is reaching out to assist you, or is asking for additional information.",
+                    IBRAHIM.all_important_infos,
+                ),
+                name="agent_reaches_ibrahim_for_info",
+            ),
         ),
         SendEmail(
             env.agent.email,
@@ -89,7 +98,10 @@ def setup_task(env: Environment) -> Task:
     )
     IBRAHIM.preplanned_actions["provides-madeline-email"] = ConditionedAction(
         AndCondition(
-            Condition(lambda: received_mail_from_agent(IBRAHIM, env)),
+            Condition(
+                lambda: received_mail_from_agent(IBRAHIM, env),
+                name="agent-sent-mail-to-ibrahim",
+            ),
             Condition(
                 lambda: semantic_is_true(
                     f"Condition should be valid if {env.agent.email} is reaching out to ask for more information about who to contact.",

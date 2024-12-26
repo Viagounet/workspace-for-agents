@@ -1,9 +1,10 @@
 import ast
+import os
 import fitz
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Callable, Optional, Self
+from typing import Any, Callable, Optional, Self
 
 from workspace_for_agents.mail import Email
 
@@ -90,7 +91,7 @@ class SendEmail(Action):
             content=self.content,
             turn=env.current_turn,
         )
-        if email._log != {}:
+        if email._log != {} and os.environ["LOG_CALLS"] == "True":
             env.add_log(
                 "dynamic_mail_debug",
                 self.source.name,
@@ -321,11 +322,19 @@ def parse_action(action_str: str) -> Optional[Action]:
 
 
 class Condition:
-    def __init__(self, condition: Callable[[], bool]) -> None:
+    def __init__(
+        self, condition: Callable[[], bool], name: Optional[str] = None
+    ) -> None:
         self.condition = condition
+        self.name = self.condition.__name__
+        if name:
+            self.name = name
 
     def is_true(self) -> bool:
         return self.condition()
+
+    def _evaluate(self) -> dict[str, str | bool]:
+        return {"name": self.name, "is_true": self.condition()}
 
 
 class CompositeCondition(Condition):
@@ -342,15 +351,33 @@ class CompositeCondition(Condition):
         # Subclasses (AND/OR) must implement their own logic.
         raise NotImplementedError
 
+    def _evaluate(self) -> dict[str, Any]:
+        conditions_values = []
+        for condition in self.conditions:
+            conditions_values.append(condition._evaluate())
+        return {"condition_type": "composite_generic", "details": conditions_values}
+
 
 class AndCondition(CompositeCondition):
     def is_true(self) -> bool:
         return all(condition.is_true() for condition in self.conditions)
 
+    def _evaluate(self) -> dict[str, Any]:
+        conditions_values = []
+        for condition in self.conditions:
+            conditions_values.append(condition._evaluate())
+        return {"condition_type": "and_condition", "details": conditions_values}
+
 
 class OrCondition(CompositeCondition):
     def is_true(self) -> bool:
         return any(condition.is_true() for condition in self.conditions)
+
+    def _evaluate(self) -> dict[str, Any]:
+        conditions_values = []
+        for condition in self.conditions:
+            conditions_values.append(condition._evaluate())
+        return {"condition_type": "or_condition", "details": conditions_values}
 
 
 @dataclass

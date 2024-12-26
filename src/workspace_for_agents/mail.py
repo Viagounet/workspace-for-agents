@@ -40,7 +40,7 @@ class Email:
             messages = [
                 {
                     "role": "developer",
-                    "content": f"Your role is to write a mail to {self.receiver} (note: you are {self.sender} according to the user's instruction. Note that the mail's object is already sent in the mail: '{self.object}'. You should only write the mail content. Do not invent anything that is not provided by the user.",
+                    "content": f"You are {self.sender} and must send a mail to {self.receiver} (object: {self.object}). You will receive some additional context clues from the user as well as instructions, you must follow the instructions very precisly, and use the context in a way that is smart. You will only answer with the content of the mail, not the object.",
                 },
                 {"role": "user", "content": content},
             ]

@@ -4,10 +4,23 @@ from workspace_for_agents.environment import create_environnement_from_file
 import os
 
 parser = ArgumentParser()
-parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
+parser.add_argument("--enable_logs", action="store_true", help="Enable logging")
+parser.add_argument(
+    "--log_actions", action="store_true", help="Enable logging for actions"
+)
+parser.add_argument(
+    "--log_conditions", action="store_true", help="Enable logging for conditions"
+)
+parser.add_argument(
+    "--log_calls", action="store_true", help="Enable logging for llm_calls"
+)
+
 args = parser.parse_args()
 
-os.environ["VERBOSE_LOG"] = str(args.verbose)
+os.environ["LOGS"] = str(args.enable_logs)
+os.environ["LOG_ACTIONS"] = str(args.log_actions)
+os.environ["LOG_CONDITIONS"] = str(args.log_conditions)
+os.environ["LOG_CALLS"] = str(args.log_calls)
 
 env = create_environnement_from_file("src/envs/test_env_1.json")
 task = setup_task(env)

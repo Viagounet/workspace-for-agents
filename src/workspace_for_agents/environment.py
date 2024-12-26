@@ -133,29 +133,31 @@ class Environment:
             while not isinstance(action, Wait):
                 action = self.agent.choose_action()
                 self.agent.execute_action(action)
-                self.add_log(
-                    "action",
-                    self.agent.name,
-                    content={
-                        "action_name": action.__class__.__name__,
-                        "content": action.json,
-                    },
-                )
-
-            for employee in self.employees:
-                actions = employee.choose_actions()
-                for action in actions:
-                    employee.execute_action(action)
+                if os.environ["LOG_ACTIONS"] == "True":
                     self.add_log(
                         "action",
-                        employee.name,
+                        self.agent.name,
                         content={
                             "action_name": action.__class__.__name__,
                             "content": action.json,
                         },
                     )
 
-            if os.getenv("VERBOSE_LOG"):
+            for employee in self.employees:
+                actions = employee.choose_actions()
+                for action in actions:
+                    employee.execute_action(action)
+                    if os.environ["LOG_ACTIONS"] == "True":
+                        self.add_log(
+                            "action",
+                            employee.name,
+                            content={
+                                "action_name": action.__class__.__name__,
+                                "content": action.json,
+                            },
+                        )
+
+            if os.getenv("LOGS"):
                 self.save_logs(path="logs.json")
 
             self.current_turn += 1
