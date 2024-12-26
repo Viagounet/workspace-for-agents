@@ -79,17 +79,33 @@ class Email:
             messages = [
                 {
                     "role": "developer",
-                    "content": f"You are {self.sender} and must send a mail to {self.receiver} (object: {self.object}). You will receive some additional context clues from the user as well as instructions, you must follow the instructions very precisly, and use the context in a way that is smart. You will only answer with the content of the mail, not the object.",
+                    "content": f"You are {self.sender} and must send a mail to {self.receiver}. You will receive some additional context clues from the user as well as instructions, you must follow the instructions very precisly, and use the context in a way that is smart. You will only answer with the content of the mail, not the object.",
                 },
                 {"role": "user", "content": content},
             ]
-            self._log = messages
+            self._log["dynamic_message"] = messages
             completion = client.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=messages,
                 max_tokens=256,
             )
             content = completion.choices[0].message.content
+
+        if self.object == "dynamic::":
+            messages = [
+                {
+                    "role": "developer",
+                    "content": f"You are {self.sender} and must send a mail to {self.receiver}. Your role is to create a mail object for the user mail.",
+                },
+                {"role": "user", "content": f"Mail: {content}\n\n===\nCan you think of a short mail object? Answer only with the object."},
+            ]
+            self._log["dynamic_object"] = messages
+            completion = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=messages,
+                max_tokens=10,
+            )
+            self.object = completion.choices[0].message.content
         self.content = content
         self.turn = turn
 

@@ -148,7 +148,7 @@ Ibrahim Mendoza""",
             ),
             SendEmail(
                 env.agent.email,
-                "<Template>",
+                "dynamic::",
                 lambda e=employee: f"dynamic::Context -> {e.all_important_infos}\n\nReply accordingly to {env.agent.email} according to the context.",
             ),
             0,
