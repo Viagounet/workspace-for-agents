@@ -1,4 +1,5 @@
 from functools import cached_property
+import os
 from workspace_for_agents.llm_client import client
 
 
@@ -34,16 +35,19 @@ class Email:
         self.sender = sender
         self.receiver = receiver
         self.object = object
+        self._log = {}
         if "dynamic::" in content:
+            messages = [
+                {
+                    "role": "developer",
+                    "content": f"Your role is to write a mail to {self.receiver} (note: you are {self.sender} according to the user's instruction. Note that the mail's object is already sent in the mail: '{self.object}'. You should only write the mail content. Do not invent anything that is not provided by the user.",
+                },
+                {"role": "user", "content": content},
+            ]
+            self._log = messages
             completion = client.chat.completions.create(
                 model="gpt-4o-mini",
-                messages=[
-                    {
-                        "role": "developer",
-                        "content": f"Your role is to write a mail to {self.receiver} (note: you are {self.sender} according to the user's instruction. Note that the mail's object is already sent in the mail: '{self.object}'. You should only write the mail content. Do not invent anything that is not provided by the user.",
-                    },
-                    {"role": "user", "content": content},
-                ],
+                messages=messages,
                 max_tokens=256,
             )
             content = completion.choices[0].message.content

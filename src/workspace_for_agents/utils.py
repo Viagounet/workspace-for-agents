@@ -33,10 +33,6 @@ def semantic_is_true(condition: str, context: Optional[str | Callable] = None) -
         response_format=ConditionVerification,
     )
     choice_taken_by_employee = completion.choices[0].message.parsed
-    if os.getenv("VERBOSE_LOG"):
-        with open("./logs.txt", "a", encoding="utf-8") as f:
-            f.write(instruction + "\n\n\n\n")
-            f.write(str(choice_taken_by_employee.model_dump()) + "\n")
 
     if choice_taken_by_employee:
         return choice_taken_by_employee.condition_is_verified

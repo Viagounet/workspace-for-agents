@@ -1,4 +1,9 @@
-from workspace_for_agents.actions import ConditionedAction, SendEmail
+from workspace_for_agents.actions import (
+    AndCondition,
+    Condition,
+    ConditionedAction,
+    SendEmail,
+)
 from workspace_for_agents.employee import Employee
 from workspace_for_agents.environment import Environment
 from workspace_for_agents.task import Goal, Task
@@ -28,6 +33,14 @@ def received_mail_from_agent(employee: Employee, env: Environment) -> bool:
     return False
 
 
+def agent_mail_was_recent(employee: Employee, env: Environment) -> bool:
+    mail_was_recent = False
+    for mail in employee.email_box.emails:
+        if mail.sender == env.agent.email and abs(mail.turn - env.current_turn) == 0:
+            mail_was_recent = True
+    return mail_was_recent
+
+
 def setup_task(env: Environment) -> Task:
     IBRAHIM: Employee = env.get_employee_by_name("Ibrahim Mendoza")
     env.agent.contacts_map = {
@@ -37,12 +50,22 @@ def setup_task(env: Environment) -> Task:
         15: env.get_employee_by_name("Hermandes Garcia"),
     }
     for ds_employee in env.get_employees_by_tag(["data"]):
+        if ds_employee.id == IBRAHIM.id:
+            continue
         ds_employee.instructions.append(
-            "If the agent contacts you, say that you are aware that the team (Ibrahim especially) is in need of a new hire."
+            "If the agent contacts you asking for directions about what to do, say that you are aware that the team (Ibrahim especially) is in need of a new hire."
+        )
+        ds_employee.instructions.append(
+            "If the agent contacts you for anything else, say that you do not have any more information."
         )
     for hr_employee in env.get_employees_by_tag(["HR"]):
+        if "Madeline" in hr_employee.name:
+            continue
         hr_employee.instructions.append(
-            "If the agent contacts you, say that you know that Madeline has a list of potential candidates."
+            "If the agent contacts you asking for a list of potential candidates, redirect them to Madeline."
+        )
+        ds_employee.instructions.append(
+            "If the agent contacts you for anything else, say that you do not have any more information."
         )
     for technician in env.get_employees_by_tag(["dev", "network"]):
         technician.instructions.append(
@@ -65,9 +88,14 @@ def setup_task(env: Environment) -> Task:
         score=1,
     )
     IBRAHIM.preplanned_actions["provides-madeline-email"] = ConditionedAction(
-        lambda: semantic_is_true(
-            f"Condition should be valid if {env.agent.email} is reaching out to ask for more information about who to contact.",
-            IBRAHIM.all_important_infos,
+        AndCondition(
+            Condition(lambda: received_mail_from_agent(IBRAHIM, env)),
+            Condition(
+                lambda: semantic_is_true(
+                    f"Condition should be valid if {env.agent.email} is reaching out to ask for more information about who to contact.",
+                    IBRAHIM.all_important_infos,
+                )
+            ),
         ),
         SendEmail(
             env.agent.email,
@@ -102,13 +130,17 @@ Ibrahim Mendoza""",
         if employee.id == IBRAHIM.id:
             continue
         action = ConditionedAction(
-            lambda e=employee: received_mail_from_agent(e, env),
+            AndCondition(
+                Condition(lambda e=employee: received_mail_from_agent(e, env)),
+                Condition(lambda e=employee: agent_mail_was_recent(e, env)),
+            ),
             SendEmail(
                 env.agent.email,
                 "<Template>",
                 f"dynamic::Context -> {employee.all_important_infos}\n\nReply accordingly to {env.agent.email} according to the context.",
             ),
             0,
+            stays_after_completion=True,
         )
         employee.preplanned_actions["reply"] = action
 

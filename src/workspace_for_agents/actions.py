@@ -3,7 +3,7 @@ import fitz
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Callable, Optional
+from typing import Callable, Optional, Self
 
 from workspace_for_agents.mail import Email
 
@@ -18,6 +18,11 @@ class Action(ABC):
 
     @abstractmethod
     def execute(self):
+        pass
+
+    @property
+    @abstractmethod
+    def json(self):
         pass
 
 
@@ -41,6 +46,10 @@ class ReadMail(Action):
                 f"ID should be an integer. `{self.mail_id}` is not an integer."
             )
 
+    @property
+    def json(self):
+        return {"mail_id": self.mail_id}
+
 
 class CheckMailBox(Action):
     def __init__(self) -> None:
@@ -52,6 +61,10 @@ class CheckMailBox(Action):
 
     def execute(self, env):
         env.agent.short_term_context += env.agent.email_box.display()
+
+    @property
+    def json(self):
+        return {}
 
 
 class SendEmail(Action):
@@ -70,15 +83,29 @@ class SendEmail(Action):
             raise RuntimeError("No source set for SendEmail")
         self.sender = self.source.email
         target_employee = env.get_employee_by_email(self.receiver)
-        target_employee.email_box.emails.append(
-            Email(
-                sender=self.source.email,
-                receiver=target_employee.email,
-                object=self.object,
-                content=self.content,
-                turn=env.current_turn,
-            )
+        email = Email(
+            sender=self.source.email,
+            receiver=target_employee.email,
+            object=self.object,
+            content=self.content,
+            turn=env.current_turn,
         )
+        if email._log != {}:
+            env.add_log(
+                "dynamic_mail_debug",
+                self.source.name,
+                content=email._log,
+            )
+        target_employee.email_box.emails.append(email)
+
+    @property
+    def json(self):
+        return {
+            "sender": self.sender,
+            "receiver": self.receiver,
+            "object": self.object,
+            "content": self.content,
+        }
 
 
 def get_pdf_page_content_with_fitz(pdf_path, page_number):
@@ -126,6 +153,13 @@ class ReadPDFPage(Action):
             self.pdf_file_path, self.page
         )
 
+    @property
+    def json(self):
+        return {
+            "pdf_file_path": self.pdf_file_path,
+            "page": self.page,
+        }
+
 
 class ReadMarkdownFile(Action):
     def __init__(self, markdown_path: str):
@@ -140,6 +174,12 @@ class ReadMarkdownFile(Action):
         with open(self.markdown_path, "r", encoding="utf-8") as f:
             env.agent.short_term_context += f.read()
 
+    @property
+    def json(self):
+        return {
+            "markdown_path": self.markdown_path,
+        }
+
 
 class DisplayContacts(Action):
     def __init__(self) -> None:
@@ -151,6 +191,10 @@ class DisplayContacts(Action):
 
     def execute(self, env):
         env.agent.short_term_context += env.agent.formated_contacts
+
+    @property
+    def json(self):
+        return {}
 
 
 class Wait(Action):
@@ -164,6 +208,10 @@ class Wait(Action):
     def execute(self, env):
         pass
 
+    @property
+    def json(self):
+        return {}
+
 
 class NoActionAfterParsing(Action):
     def __init__(self) -> None:
@@ -175,6 +223,10 @@ class NoActionAfterParsing(Action):
 
     def execute(self, env):
         pass
+
+    @property
+    def json(self):
+        return {}
 
 
 def parse_action(action_str: str) -> Optional[Action]:
@@ -268,13 +320,51 @@ def parse_action(action_str: str) -> Optional[Action]:
         return NoActionAfterParsing()
 
 
+class Condition:
+    def __init__(self, condition: Callable[[], bool]) -> None:
+        self.condition = condition
+
+    def is_true(self) -> bool:
+        return self.condition()
+
+
+class CompositeCondition(Condition):
+    """
+    Base class for composite conditions that combine multiple Condition objects.
+    """
+
+    def __init__(self, *conditions: Condition) -> None:
+        # Instead of a single callable, store multiple Condition objects
+        super().__init__(lambda: None)  # We won't use this lambda directly
+        self.conditions = conditions
+
+    def is_true(self) -> bool:
+        # Subclasses (AND/OR) must implement their own logic.
+        raise NotImplementedError
+
+
+class AndCondition(CompositeCondition):
+    def is_true(self) -> bool:
+        return all(condition.is_true() for condition in self.conditions)
+
+
+class OrCondition(CompositeCondition):
+    def is_true(self) -> bool:
+        return any(condition.is_true() for condition in self.conditions)
+
+
 @dataclass
 class ConditionedAction:
-    condition: Callable
+    condition: Condition | Callable
     linked_action: Action
     score: int
     requires_completion: list = field(default_factory=list)
     is_completed: bool = False
+    stays_after_completion: bool = False
+
+    def __post_init__(self):
+        if isinstance(self.condition, Callable):
+            self.condition = Condition(self.condition)
 
     def add_requirement(self, requirement):
         self.requires_completion.append(requirement)

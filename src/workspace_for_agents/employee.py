@@ -95,7 +95,10 @@ class Employee:
             if not all_requirements_completed:
                 continue
 
-            if not preplanned_action.is_completed and preplanned_action.condition():
+            if (
+                not preplanned_action.is_completed
+                or preplanned_action.stays_after_completion
+            ) and preplanned_action.condition.is_true():
                 actions.append(preplanned_action.linked_action)
                 preplanned_action.is_completed = True
         return actions
