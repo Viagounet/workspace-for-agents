@@ -11,3 +11,4 @@
 - add 'attached_files' to a mail
 - new action -> display available files
 - new action -> read excels
+- cleaner set of basic conditions for task implementations
