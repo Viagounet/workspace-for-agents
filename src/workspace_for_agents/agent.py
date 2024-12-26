@@ -1,5 +1,7 @@
+from typing import Optional
 from workspace_for_agents.actions import Action, Wait, parse_action
 from workspace_for_agents.employee import Employee
+from workspace_for_agents.file_system import File, Folder
 
 
 class Agent(Employee):
@@ -23,6 +25,27 @@ class Agent(Employee):
         for action in self.available_actions:
             description += f"- {action.description()}\n"
         return description.strip()
+
+    def add_to_download_folder(self, folder_or_file: File | Folder) -> None:
+        download_folder_exists: bool = False
+        for folder in self.folders:
+            if folder.name == "agent_downloads":
+                download_folder_exists = True
+                download_folder = folder
+                break
+
+        if not download_folder_exists:
+            download_folder = Folder("agent_downloads/", "agent_downloads")
+
+        if isinstance(download_folder, File):
+            file: File = folder_or_file
+            download_folder.add_file(file)
+        elif isinstance(download_folder, Folder):
+            folder: Folder = folder_or_file
+            download_folder.add_subfolder(folder)
+
+        if not download_folder_exists:
+            self.folders.append(download_folder)
 
     def choose_action(self) -> Action:
         return Wait()

@@ -1,5 +1,5 @@
 from functools import cached_property
-from typing import Callable
+from typing import Callable, Optional
 from workspace_for_agents.llm_client import client
 
 
@@ -64,11 +64,18 @@ class EmailBox:
 
 class Email:
     def __init__(
-        self, sender: str, receiver: str, object: str, content: str, turn: int
+        self,
+        sender: str,
+        receiver: str,
+        object: str,
+        content: str,
+        turn: int,
+        attached_file: Optional[str] = None,
     ) -> None:
         self.sender = sender
         self.receiver = receiver
         self.object = object
+        self.attached_file: str = attached_file
         self._log = {}
 
         if isinstance(content, Callable):
@@ -97,7 +104,10 @@ class Email:
                     "role": "developer",
                     "content": f"You are {self.sender} and must send a mail to {self.receiver}. Your role is to create a mail object for the user mail.",
                 },
-                {"role": "user", "content": f"Mail: {content}\n\n===\nCan you think of a short mail object? Answer only with the object."},
+                {
+                    "role": "user",
+                    "content": f"Mail: {content}\n\n===\nCan you think of a short mail object? Answer only with the object.",
+                },
             ]
             self._log["dynamic_object"] = messages
             completion = client.chat.completions.create(

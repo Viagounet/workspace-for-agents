@@ -5,7 +5,9 @@ import fitz
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Any, Callable, Optional
+from pathlib import Path
 
+from workspace_for_agents.file_system import File, Folder, create_folder_structure
 from workspace_for_agents.mail import Email
 
 
@@ -69,12 +71,19 @@ class CheckMailBox(Action):
 
 
 class SendEmail(Action):
-    def __init__(self, receiver: str, object: str, content: str) -> None:
+    def __init__(
+        self,
+        receiver: str,
+        object: str,
+        content: str,
+        attached_file: Optional[str] = None,
+    ) -> None:
         super().__init__()
         self.receiver = receiver
         self.object = object
         self.content = content
         self.dynamic_content: Optional[str] = None
+        self.attached_file = attached_file
 
     @classmethod
     def description(self) -> str:
@@ -91,6 +100,7 @@ class SendEmail(Action):
             object=self.object,
             content=self.content,
             turn=env.current_turn,
+            attached_file=self.attached_file,
         )
         if email._log != {} and os.environ["LOG_CALLS"] == "True":
             env.add_log(
@@ -102,6 +112,15 @@ class SendEmail(Action):
             self.dynamic_content = email.content
         target_employee.email_box.received_emails.append(email)
         self.source.email_box.sent_emails.append(email)
+        if email.attached_file:
+            path = Path(email.attached_file)
+            if path.is_file():
+                target_employee.folders.append()
+            elif path.is_dir():
+                folder = create_folder_structure(email.attached_file)
+                target_employee.add_to_download_folder(folder)
+            else:
+                pass
 
     @property
     def json(self):
@@ -110,9 +129,29 @@ class SendEmail(Action):
             "receiver": self.receiver,
             "object": self.object,
             "content": self.dynamic_content if self.dynamic_content else self.content,
+            "attached_file": self.attached_file,
         }
         self.dynamic_content = None
         return output
+
+
+class DisplayFiles(Action):
+    def __init__(self):
+        super().__init__()
+
+    @classmethod
+    def description(self) -> str:
+        return "display_files() # Displays all the available files at your disposal."
+
+    def execute(self, env):
+        if env.agent.folders == []:
+            env.agent.short_term_context += "File system: you have no available files!"
+        else:
+            env.agent.short_term_context += env.agent.list_available_files()
+
+    @property
+    def json(self):
+        return {}
 
 
 def get_pdf_page_content_with_fitz(pdf_path, page_number):
@@ -258,6 +297,7 @@ def parse_action(action_str: str) -> Optional[Action]:
         "display_contacts": DisplayContacts,
         "read_pdf_page": ReadPDFPage,
         "read_markdown": ReadMarkdownFile,
+        "display_files": DisplayFiles,
     }
 
     # Trim leading/trailing whitespace

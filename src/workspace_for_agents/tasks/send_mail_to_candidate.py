@@ -91,8 +91,9 @@ def setup_task(env: Environment) -> Task:
         ),
         SendEmail(
             env.agent.email,
-            "RE: Assistance needed?",
+            "Assistance directions",
             "Thanks for emailing me, actually, I would like to hire a new employee for our work on WikiFactDiff. Once you've found someone that seems like a good fit, send him a mail!",
+            attached_file="src/envs/files/READMEs/machine-learning/",
         ),
         score=1,
     )

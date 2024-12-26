@@ -6,7 +6,6 @@
 
 # Todo
 
-- dynamic:: for objects
 - add 'attached_files' to a mail
 - new action -> display available files
 - new action -> read excels

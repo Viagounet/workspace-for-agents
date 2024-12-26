@@ -5,6 +5,7 @@ from typing import Any
 from workspace_for_agents.actions import (
     CheckMailBox,
     DisplayContacts,
+    DisplayFiles,
     ReadMail,
     ReadMarkdownFile,
     ReadPDFPage,
@@ -198,6 +199,7 @@ def create_environnement_from_file(file_path: str) -> Environment:
             CheckMailBox,
             ReadMail,
             SendEmail,
+            DisplayFiles,
             ReadPDFPage,
             ReadMarkdownFile,
             Wait,
