@@ -9,3 +9,4 @@
 - cleaner set of basic conditions for task implementations
 - show attached file in mail 
 - new action -> read excels
+- more coherence between Goals & Preplanned actions
