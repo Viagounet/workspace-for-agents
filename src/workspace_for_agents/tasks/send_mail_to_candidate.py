@@ -43,6 +43,7 @@ def agent_mail_was_recent(employee: Employee, env: Environment) -> bool:
 
 def setup_task(env: Environment) -> Task:
     IBRAHIM: Employee = env.get_employee_by_name("Ibrahim Mendoza")
+    MADELINE: Employee = env.get_employee_by_name("Madeline Brooks")
     env.agent.contacts_map = {
         12: env.get_employee_by_name("Chen Wei"),
         13: env.get_employee_by_name("Léa Dubois"),
@@ -91,9 +92,8 @@ def setup_task(env: Environment) -> Task:
         ),
         SendEmail(
             env.agent.email,
-            "Assistance directions",
+            "dynamic::",
             "Thanks for emailing me, actually, I would like to hire a new employee for our work on WikiFactDiff. Once you've found someone that seems like a good fit, send him a mail!",
-            attached_file="src/envs/files/READMEs/machine-learning/",
         ),
         score=1,
     )
@@ -112,7 +112,7 @@ def setup_task(env: Environment) -> Task:
         ),
         SendEmail(
             env.agent.email,
-            "RE: HR Contact",
+            "dynamic::",
             "Hey Agent, I believe if you need a list of potential candidates, you should probably contact madeline.brooks@company.com",
         ),
         score=1,
@@ -140,7 +140,7 @@ Ibrahim Mendoza""",
     )
 
     for employee in env.employees:
-        if employee.id == IBRAHIM.id:
+        if employee.id in [IBRAHIM.id, MADELINE.id]:
             continue
         action = ConditionedAction(
             AndCondition(
@@ -157,6 +157,24 @@ Ibrahim Mendoza""",
         )
         employee.preplanned_actions["reply"] = action
 
+    MADELINE.preplanned_actions["send-hires-list"] = ConditionedAction(
+        condition=AndCondition(
+            Condition(lambda e=MADELINE: received_mail_from_agent(e, env)),
+            Condition(
+                lambda: semantic_is_true(
+                    f"Condition should be valid if received a mail from {env.agent.email} asking for help with the hiring of a new employee.",
+                    MADELINE.all_important_infos,
+                )
+            ),
+        ),
+        linked_action=SendEmail(
+            env.agent.email,
+            "dynamic::",
+            "Hello Agent,\nI am transfering to your downloads folder a list of potential hires. If you find someone interesting, please send them an email and I'll set up an appointment later.\n\nMadeline.",
+            attached_file="src/envs/files/HR/profiles"
+        ),
+        score=1,
+    )
     TALKED_TO_IBRAHIM = Goal(
         name="talk-to-ibrahim",
         conditions=[lambda: has_sent_email(env.agent, IBRAHIM.email)],

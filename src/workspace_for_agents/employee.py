@@ -98,7 +98,6 @@ class Employee:
                 continue
 
             if hasattr(self, "env") and os.environ["LOG_CONDITIONS"] == "True":
-                print("LOGGING COND")
                 self.env.add_log(
                     "preplanned_action_cond",
                     self.name,

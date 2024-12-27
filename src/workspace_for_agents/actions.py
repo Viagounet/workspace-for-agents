@@ -226,6 +226,8 @@ class ReadMarkdownFile(Action):
     def execute(self, env):
         path = self.markdown_path
         for agent_ref_path, absolute_path in env.agent.simlinks.items():
+            if absolute_path[-1] != "/":
+                absolute_path = absolute_path + "/"
             path = path.replace(agent_ref_path, absolute_path)
         with open(path, "r", encoding="utf-8") as f:
             env.agent.short_term_context += f.read()
