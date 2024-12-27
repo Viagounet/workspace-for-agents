@@ -171,7 +171,7 @@ Ibrahim Mendoza""",
             env.agent.email,
             "dynamic::",
             "Hello Agent,\nI am transfering to your downloads folder a list of potential hires. If you find someone interesting, please send them an email and I'll set up an appointment later.\n\nMadeline.",
-            attached_file="src/envs/files/HR/profiles"
+            attached_file="src/envs/files/HR/profiles",
         ),
         score=1,
     )

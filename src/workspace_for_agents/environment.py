@@ -14,7 +14,7 @@ from workspace_for_agents.actions import (
     Wait,
 )
 from workspace_for_agents.task import Task
-from workspace_for_agents.agent import Agent, HumanAgent
+from workspace_for_agents.agent import Agent, GPTAgent, HumanAgent
 from workspace_for_agents.employee import Employee
 
 
@@ -210,7 +210,7 @@ def create_environnement_from_file(file_path: str) -> Environment:
         for employee_id in folder["has_access"]:
             employees[employee_id].add_files_from_folder(folder["path"])
 
-    agent = HumanAgent(
+    agent = GPTAgent(
         available_actions=[
             DisplayContacts,
             CheckMailBox,
