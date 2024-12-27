@@ -165,6 +165,7 @@ Ibrahim Mendoza""",
     SENT_EMAIL_TO_TARIQ = Goal(
         name="send-mail-to-tariq",
         conditions=[lambda: has_sent_email(env.agent, "tariq.hassan@example.com")],
+        triggers_completion=True,
     )
 
     task = Task(

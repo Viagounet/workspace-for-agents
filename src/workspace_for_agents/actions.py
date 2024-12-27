@@ -93,10 +93,13 @@ class SendEmail(Action):
         if not self.source:
             raise RuntimeError("No source set for SendEmail")
         self.sender = self.source.email
-        target_employee = env.get_employee_by_email(self.receiver)
+        receiver_mail = self.receiver
+        if "@company.com" in self.receiver:
+            target_employee = env.get_employee_by_email(self.receiver)
+            receiver_mail = target_employee.email
         email = Email(
             sender=self.source.email,
-            receiver=target_employee.email,
+            receiver=receiver_mail,
             object=self.object,
             content=self.content,
             turn=env.current_turn,
@@ -110,7 +113,9 @@ class SendEmail(Action):
             )
         if isinstance(self.content, Callable):
             self.dynamic_content = email.content
-        target_employee.email_box.received_emails.append(email)
+        if "@company.com" in self.receiver:
+            target_employee.email_box.received_emails.append(email)
+
         self.source.email_box.sent_emails.append(email)
         if email.attached_file:
             path = Path(email.attached_file)
@@ -195,9 +200,11 @@ class ReadPDFPage(Action):
         return "read_pdf_page(pdf_file_path: str, page_number: int) # Returns a string of the content of a PDF (note: pages enumeration start at 1)"
 
     def execute(self, env):
-        env.agent.short_term_context += get_pdf_page_content_with_fitz(
-            self.pdf_file_path, self.page
-        )
+        path = self.markdown_path
+        for agent_ref_path, absolute_path in env.agent.simlinks.items():
+            path = path.replace(agent_ref_path, absolute_path)
+
+        env.agent.short_term_context += get_pdf_page_content_with_fitz(path, self.page)
 
     @property
     def json(self):
@@ -219,7 +226,6 @@ class ReadMarkdownFile(Action):
     def execute(self, env):
         path = self.markdown_path
         for agent_ref_path, absolute_path in env.agent.simlinks.items():
-            print(agent_ref_path, absolute_path)
             path = path.replace(agent_ref_path, absolute_path)
         with open(path, "r", encoding="utf-8") as f:
             env.agent.short_term_context += f.read()
@@ -241,6 +247,22 @@ class DisplayContacts(Action):
 
     def execute(self, env):
         env.agent.short_term_context += env.agent.formated_contacts
+
+    @property
+    def json(self):
+        return {}
+
+
+class SetTaskAsCompleted(Action):
+    def __init__(self) -> None:
+        super().__init__()
+
+    @classmethod
+    def description(self) -> str:
+        return "set_task_as_completed() # Will end the task, to call only when you think the objective is completed."
+
+    def execute(self, env):
+        pass
 
     @property
     def json(self):
@@ -302,6 +324,7 @@ def parse_action(action_str: str) -> Optional[Action]:
         "read_pdf_page": ReadPDFPage,
         "read_markdown": ReadMarkdownFile,
         "display_files": DisplayFiles,
+        "set_task_as_completed": SetTaskAsCompleted,
     }
 
     # Trim leading/trailing whitespace

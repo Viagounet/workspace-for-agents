@@ -2,9 +2,10 @@ from workspace_for_agents.employee import Employee
 
 
 class Goal:
-    def __init__(self, name: str, conditions) -> None:
+    def __init__(self, name: str, conditions, triggers_completion=False) -> None:
         self.name = name
         self.conditions = conditions
+        self.triggers_completion = triggers_completion
 
     @property
     def score(self):

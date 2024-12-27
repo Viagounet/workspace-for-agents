@@ -10,6 +10,7 @@ from workspace_for_agents.actions import (
     ReadMarkdownFile,
     ReadPDFPage,
     SendEmail,
+    SetTaskAsCompleted,
     Wait,
 )
 from workspace_for_agents.task import Task
@@ -129,9 +130,10 @@ class Environment:
 
     def run_task(self, task: Task, max_turns: int = 100) -> None:
         self.agent.header = f"High-level objective: {task.task_goal}"
+        task_ongoing = True
         for turn in range(max_turns):
             action = None
-            while not isinstance(action, Wait):
+            while not isinstance(action, Wait) and task_ongoing:
                 action = self.agent.choose_action()
                 self.agent.execute_action(action)
                 if os.environ["LOG_ACTIONS"] == "True":
@@ -144,6 +146,13 @@ class Environment:
                         },
                     )
 
+                if os.getenv("LOGS"):
+                    self.save_logs(path="logs.json")
+
+                if isinstance(action, SetTaskAsCompleted):
+                    task_ongoing = False
+            if task_ongoing == False:
+                break
             for employee in self.employees:
                 actions = employee.choose_actions()
                 for action in actions:
@@ -157,12 +166,20 @@ class Environment:
                                 "content": action.json,
                             },
                         )
+                    if os.getenv("LOGS"):
+                        self.save_logs(path="logs.json")
+                    if isinstance(action, SetTaskAsCompleted):
+                        task_ongoing = False
+                        break
 
-            if os.getenv("LOGS"):
-                self.save_logs(path="logs.json")
+            for goal in task.completion_goals:
+                if goal.score == 1 and goal.triggers_completion:
+                    task_ongoing = False
+
+            if task_ongoing == False:
+                break
 
             self.current_turn += 1
-            print("NEW TURN")
 
         for goal in task.completion_goals:
             print(f"{goal.name}: {goal.score}")
@@ -203,6 +220,7 @@ def create_environnement_from_file(file_path: str) -> Environment:
             ReadPDFPage,
             ReadMarkdownFile,
             Wait,
+            SetTaskAsCompleted,
         ]
     )
     env = Environment(agent=agent, employees=list(employees.values()))
