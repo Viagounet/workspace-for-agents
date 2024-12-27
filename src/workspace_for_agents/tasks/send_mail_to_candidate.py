@@ -57,15 +57,18 @@ def setup_task(env: Environment) -> Task:
             "If the agent contacts you asking for directions about what to do, say that you are aware that the team (Ibrahim especially) is in need of a new hire."
         )
         ds_employee.instructions.append(
+            "If the agent contacts you asking for who to contact to get a list of potential candidates, redirect him to Madeline from HR."
+        )
+        ds_employee.instructions.append(
             "If the agent contacts you for anything else, try to assist him the best you can. If you don't have enough information, reply by saying you don't know."
         )
     for hr_employee in env.get_employees_by_tag(["HR"]):
         if "Madeline" in hr_employee.name:
             continue
         hr_employee.instructions.append(
-            "If the agent contacts you asking for a list of potential candidates, redirect them to Madeline."
+            "If the agent contacts you asking for a list of potential candidates, redirect them to Madeline from the HR department."
         )
-        ds_employee.instructions.append(
+        hr_employee.instructions.append(
             "If the agent contacts you for anything else, say that you do not have any more information."
         )
     for technician in env.get_employees_by_tag(["dev", "network"]):
@@ -93,7 +96,7 @@ def setup_task(env: Environment) -> Task:
         SendEmail(
             env.agent.email,
             "dynamic::",
-            "Thanks for emailing me, actually, I would like to hire a new employee for our work on WikiFactDiff. Once you've found someone that seems like a good fit, send him a mail!",
+            "Thanks for emailing me, actually, I would like to hire a new employee for our work on WikiFactDiff. The candidate should have already worked on WikiFactDIff previously. Once you have chosen a potential candidate, please send him a mail!\n\nBy the way, do you know where to find a list of potential candidates?\n\nIbrahim",
         ),
         score=1,
     )

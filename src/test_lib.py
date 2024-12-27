@@ -6,6 +6,9 @@ import os
 parser = ArgumentParser()
 parser.add_argument("--enable_logs", action="store_true", help="Enable logging")
 parser.add_argument(
+    "--agent-type", type=str, help="Either human or gpt"
+)
+parser.add_argument(
     "--log_actions", action="store_true", help="Enable logging for actions"
 )
 parser.add_argument(
@@ -21,7 +24,7 @@ os.environ["LOGS"] = str(args.enable_logs)
 os.environ["LOG_ACTIONS"] = str(args.log_actions)
 os.environ["LOG_CONDITIONS"] = str(args.log_conditions)
 os.environ["LOG_CALLS"] = str(args.log_calls)
-
+os.environ["AGENT_TYPE"] = str(args.agent_type)
 env = create_environnement_from_file("src/envs/test_env_1.json")
 task = setup_task(env)
 env.run_task(task)

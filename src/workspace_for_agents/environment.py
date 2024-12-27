@@ -210,7 +210,14 @@ def create_environnement_from_file(file_path: str) -> Environment:
         for employee_id in folder["has_access"]:
             employees[employee_id].add_files_from_folder(folder["path"])
 
-    agent = GPTAgent(
+    match os.environ["AGENT_TYPE"]:
+        case "human":
+            Agent = HumanAgent
+        case "gpt":
+            Agent = GPTAgent
+        case _:
+            raise KeyError(f"Agent type must be either `human` or `gpt`")
+    agent = Agent(
         available_actions=[
             DisplayContacts,
             CheckMailBox,
