@@ -18,6 +18,7 @@ class Agent(Employee):
         self.header = ""
         self.env = None
         self.short_term_context: str = ""
+        self.simlinks: dict[str, str] = {}
 
     @property
     def actions_descriptions(self) -> str:
@@ -28,6 +29,7 @@ class Agent(Employee):
 
     def add_to_download_folder(self, folder_or_file: File | Folder) -> None:
         download_folder_exists: bool = False
+        self.simlinks[f"agent_downloads/{folder_or_file.name}/"] = folder_or_file.path
         for folder in self.folders:
             if folder.name == "agent_downloads":
                 download_folder_exists = True

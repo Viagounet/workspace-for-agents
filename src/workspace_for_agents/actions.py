@@ -217,7 +217,11 @@ class ReadMarkdownFile(Action):
         return "read_markdown(markdown_path: str) # Returns a string of the content of a Markdown file"
 
     def execute(self, env):
-        with open(self.markdown_path, "r", encoding="utf-8") as f:
+        path = self.markdown_path
+        for agent_ref_path, absolute_path in env.agent.simlinks.items():
+            print(agent_ref_path, absolute_path)
+            path = path.replace(agent_ref_path, absolute_path)
+        with open(path, "r", encoding="utf-8") as f:
             env.agent.short_term_context += f.read()
 
     @property
