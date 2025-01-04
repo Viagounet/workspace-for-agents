@@ -7,6 +7,10 @@ from workspace_for_agents.actions import (
 from workspace_for_agents.employee import Employee
 from workspace_for_agents.environment import Environment
 from workspace_for_agents.task import Goal, Task
+from workspace_for_agents.tasks.generic_conditions import (
+    mail_does_not_exists,
+    mail_exists,
+)
 from workspace_for_agents.utils import semantic_is_true
 
 
@@ -80,18 +84,14 @@ def setup_task(env: Environment) -> Task:
         f"If you received a mail from {env.agent.email}, you will reply by saying you would like to hire a new employee that has some solid knowledge about WikiFactDiff and say that once he has found a candidate, he can directly send a mail to the candidate. If not, do nothing."
     )
     IBRAHIM.preplanned_actions["send-mail-agent-need-hire"] = ConditionedAction(
-        AndCondition(
-            Condition(
-                lambda: received_mail_from_agent(IBRAHIM, env),
-                name="agent-sent-mail-to-ibrahim",
+        Condition(
+            lambda: mail_exists(
+                env,
+                env.agent,
+                IBRAHIM,
+                mail_condition=f"{env.agent.email} is reaching out to assist you, or is asking for additional information.",
             ),
-            Condition(
-                lambda: semantic_is_true(
-                    f"Condition should be valid if {env.agent.email} is reaching out to assist you, or is asking for additional information.",
-                    IBRAHIM.all_important_infos,
-                ),
-                name="agent_reaches_ibrahim_for_info",
-            ),
+            name="agent-sent-mail-to-ibrahim",
         ),
         SendEmail(
             env.agent.email,
@@ -101,17 +101,14 @@ def setup_task(env: Environment) -> Task:
         score=1,
     )
     IBRAHIM.preplanned_actions["provides-madeline-email"] = ConditionedAction(
-        AndCondition(
-            Condition(
-                lambda: received_mail_from_agent(IBRAHIM, env),
-                name="agent-sent-mail-to-ibrahim",
+        Condition(
+            lambda: mail_exists(
+                env,
+                env.agent,
+                IBRAHIM,
+                mail_condition=f"Condition should be valid if {env.agent.email} is reaching out to ask for more information about who to contact.",
             ),
-            Condition(
-                lambda: semantic_is_true(
-                    f"Condition should be valid if {env.agent.email} is reaching out to ask for more information about who to contact.",
-                    IBRAHIM.all_important_infos,
-                )
-            ),
+            name="agent-sent-mail-to-ibrahim",
         ),
         SendEmail(
             env.agent.email,
@@ -122,7 +119,7 @@ def setup_task(env: Environment) -> Task:
         requires_completion=[IBRAHIM.preplanned_actions["send-mail-agent-need-hire"]],
     )
     IBRAHIM.preplanned_actions["ibrahim-requires-help"] = ConditionedAction(
-        lambda: has_not_received_mail(env, IBRAHIM, max_turn=3),
+        lambda: env.current_turn >= 3 and mail_does_not_exists(env, env.agent, IBRAHIM),
         SendEmail(
             env.agent.email,
             "RE: Requiring immediate help.",
@@ -146,9 +143,9 @@ Ibrahim Mendoza""",
         if employee.id in [IBRAHIM.id, MADELINE.id]:
             continue
         action = ConditionedAction(
-            AndCondition(
-                Condition(lambda e=employee: received_mail_from_agent(e, env)),
-                Condition(lambda e=employee: agent_mail_was_recent(e, env)),
+            Condition(
+                lambda e=employee: mail_exists(env, env.agent, e, mail_newer_than=0),
+                name=f"agent-sent-mail-to-{employee.email}",
             ),
             SendEmail(
                 env.agent.email,

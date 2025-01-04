@@ -3,6 +3,7 @@
 --log_actions
 --log_conditions
 --log_calls
+--log_semantic
 
 # Todo
 
