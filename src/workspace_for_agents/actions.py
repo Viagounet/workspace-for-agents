@@ -95,8 +95,15 @@ class SendEmail(Action):
         self.sender = self.source.email
         receiver_mail = self.receiver
         if "@company.com" in self.receiver:
-            target_employee = env.get_employee_by_email(self.receiver)
-            receiver_mail = target_employee.email
+            try:
+                target_employee = env.get_employee_by_email(self.receiver)
+                receiver_mail = target_employee.email
+            except KeyError:
+                self.source.short_term_context += (
+                    f"<Info> {self.receiver} is not a valid email adress. </Info>"
+                )
+                return None
+
         email = Email(
             sender=self.source.email,
             receiver=receiver_mail,
