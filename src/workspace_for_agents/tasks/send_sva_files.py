@@ -35,7 +35,7 @@ def setup_task(env: Environment) -> Task:
     for employee in env.get_employees_by_tag(["dev"]):
         if employee.id in [HANNAH.id, OLIVIA.id]:
             continue
-    
+
         if OLIVIA in employee.contacts:
             employee.instructions.append(
                 "If the agent contacts you asking for directions about SVA, please redirect him to Olivia."
@@ -67,21 +67,23 @@ def setup_task(env: Environment) -> Task:
             stays_after_completion=True,
         )
         employee.preplanned_actions["reply"] = action
-    
+
     OLIVIA.preplanned_actions["send_sva_files"] = ConditionedAction(
-            Condition(
-                lambda: mail_exists(env, env.agent, OLIVIA, mail_condition="The mail is related to SVA."),
-                name=f"agent-sent-mail-to-{employee.email}",
+        Condition(
+            lambda: mail_exists(
+                env, env.agent, OLIVIA, mail_condition="The mail is related to SVA."
             ),
-            SendEmail(
-                env.agent.email,
-                "dynamic::",
-                lambda : f"dynamic::Context -> {OLIVIA.all_important_infos}\n\nTell the agent you're giving him infos in the attached files and that he should get back to Hannah summarizing the information from them.",
-                attached_file="src/envs/files/Offres d'interconnexion et d'acces/offre d'interconnexion SVA"
-            ),
-            1,
-            stays_after_completion=False,
-        )
+            name=f"agent-sent-mail-to-{employee.email}",
+        ),
+        SendEmail(
+            env.agent.email,
+            "dynamic::",
+            lambda: f"dynamic::Context -> {OLIVIA.all_important_infos}\n\nTell the agent you're giving him infos in the attached files and that he should get back to Hannah summarizing the information from them.",
+            attached_file="src/envs/files/Offres d'interconnexion et d'acces/offre d'interconnexion SVA",
+        ),
+        1,
+        stays_after_completion=False,
+    )
     goal = Goal(
         name=f"sent-message-to-olivia",
         conditions=[
