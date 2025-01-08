@@ -4,9 +4,12 @@
             "id": 0,
             "name": "Noah Bennet",
             "email": "noah.bennet@company.com",
-            "tags": ["dev"],
+            "tags": [
+                "dev"
+            ],
             "contacts_ids": [
                 1,
+                3,
                 11
             ],
             "additional_information": "Noah is a software engineer. He knows that Liam is a competent developper in Webdev & VoIP. He also knows Mason Kelly, that was his old boss before Mason joined the Data Science team."
@@ -15,7 +18,9 @@
             "id": 1,
             "name": "Liam Grant",
             "email": "liam.grant@company.com",
-            "tags": ["dev"],
+            "tags": [
+                "dev"
+            ],
             "contacts_ids": [
                 0
             ],
@@ -25,7 +30,10 @@
             "id": 2,
             "name": "Olivia Hughes",
             "email": "olivia.hughes@company.com",
-            "tags": ["dev", "network"],
+            "tags": [
+                "dev",
+                "network"
+            ],
             "contacts_ids": [
                 0,
                 4,
@@ -37,7 +45,10 @@
             "id": 3,
             "name": "Lucas Green",
             "email": "lucas.green@company.com",
-            "tags": ["dev", "network"],
+            "tags": [
+                "dev",
+                "network"
+            ],
             "contacts_ids": [
                 2,
                 4,
@@ -50,7 +61,9 @@
             "id": 4,
             "name": "Ava Johnson",
             "email": "ava.johnson@company.com",
-            "tags": ["network"],
+            "tags": [
+                "network"
+            ],
             "contacts_ids": [
                 2,
                 3,
@@ -62,7 +75,9 @@
             "id": 5,
             "name": "Isabella Young",
             "email": "isabella.young@company.com",
-            "tags": ["network"],
+            "tags": [
+                "network"
+            ],
             "contacts_ids": [
                 2,
                 3,
@@ -74,7 +89,9 @@
             "id": 6,
             "name": "Hannah Hoster",
             "email": "hannah.foster@company.com",
-            "tags": ["HR"],
+            "tags": [
+                "HR"
+            ],
             "contacts_ids": [
                 3,
                 7,
@@ -87,7 +104,9 @@
             "id": 7,
             "name": "Jacob Morris",
             "email": "jacob.morris@company.com",
-            "tags": ["HR"],
+            "tags": [
+                "HR"
+            ],
             "contacts_ids": [
                 6,
                 8
@@ -98,7 +117,9 @@
             "id": 8,
             "name": "Madeline Brooks",
             "email": "madeline.brooks@company.com",
-            "tags": ["HR"],
+            "tags": [
+                "HR"
+            ],
             "contacts_ids": [
                 6,
                 7,
@@ -110,7 +131,10 @@
             "id": 9,
             "name": "Nathaniel Bennet",
             "email": "nathaniel.bennet@company.com",
-            "tags": ["HR", "policy"],
+            "tags": [
+                "HR",
+                "policy"
+            ],
             "contacts_ids": [
                 6,
                 8,
@@ -123,7 +147,9 @@
             "id": 10,
             "name": "Daniel Brooks",
             "email": "daniel.brooks@company.com",
-            "tags": ["policy"],
+            "tags": [
+                "policy"
+            ],
             "contacts_ids": [
                 9
             ],
@@ -133,7 +159,9 @@
             "id": 11,
             "name": "Mason Kelly",
             "email": "mason.kelly@company.com",
-            "tags": ["HR"],
+            "tags": [
+                "HR"
+            ],
             "contacts_ids": [
                 0,
                 9,
@@ -145,7 +173,9 @@
             "id": 12,
             "name": "Chen Wei",
             "email": "chen.wei@company.com",
-            "tags": ["data"],
+            "tags": [
+                "data"
+            ],
             "contacts_ids": [
                 11,
                 13,
@@ -157,7 +187,9 @@
             "id": 13,
             "name": "Léa Dubois",
             "email": "lea.dubois@company.com",
-            "tags": ["data"],
+            "tags": [
+                "data"
+            ],
             "contacts_ids": [
                 12,
                 14
@@ -168,7 +200,9 @@
             "id": 14,
             "name": "Ibrahim Mendoza",
             "email": "ibrahim.mendoza@company.com",
-            "tags": ["data"],
+            "tags": [
+                "data"
+            ],
             "contacts_ids": [
                 12,
                 13
@@ -179,7 +213,9 @@
             "id": 15,
             "name": "Hermandes Garcia",
             "email": "hermandes.garcia@company.com",
-            "tags": ["data"],
+            "tags": [
+                "data"
+            ],
             "contacts_ids": [
                 12,
                 13,

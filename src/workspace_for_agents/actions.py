@@ -103,7 +103,6 @@ class SendEmail(Action):
                     f"<Info> {self.receiver} is not a valid email adress. </Info>"
                 )
                 return None
-
         email = Email(
             sender=self.source.email,
             receiver=receiver_mail,
@@ -207,7 +206,7 @@ class ReadPDFPage(Action):
         return "read_pdf_page(pdf_file_path: str, page_number: int) # Returns a string of the content of a PDF (note: pages enumeration start at 1)"
 
     def execute(self, env):
-        path = self.markdown_path
+        path = self.pdf_file_path
         for agent_ref_path, absolute_path in env.agent.simlinks.items():
             path = path.replace(agent_ref_path, absolute_path)
 
