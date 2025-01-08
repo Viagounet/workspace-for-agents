@@ -38,7 +38,7 @@ class Employee:
     def formated_contacts(self):
         contacts = "Contacts:\n\n"
         for id, contact_info in self.contacts_map.items():
-            contacts += f"- {contact_info.name} - (email: {contact_info.email})\n"
+            contacts += f"- {contact_info.name} - {contact_info.additional_information} (email: {contact_info.email})\n"
         return contacts
 
     def add_contact(self, employee: Self):

@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from workspace_for_agents.tasks.send_wishes_full_company_with_email_change import (
+from workspace_for_agents.tasks.send_sva_files import (
     setup_task,
 )
 from workspace_for_agents.environment import create_environnement_from_file

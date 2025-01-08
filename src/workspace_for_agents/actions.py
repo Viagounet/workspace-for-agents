@@ -310,20 +310,84 @@ class NoActionAfterParsing(Action):
         return {}
 
 
+class ForceArgTextToString(ast.NodeTransformer):
+    """
+    If we see a call like: func(arg1, arg2, key=val),
+    we convert each arg/val (UNLESS it's already a constant)
+    into a string literal containing the original source code.
+
+    e.g.
+        send_mail_to(liam.grant@company.com, 42, some_func('x'))
+    becomes
+        send_mail_to("liam.grant@company.com", "42", "some_func('x')")
+    """
+
+    def visit_Call(self, node: ast.Call) -> ast.AST:
+        # Keep the function name as is (so we can still do call_node.func.id later)
+        self.generic_visit(node.func)
+
+        # Now transform each positional argument
+        new_args = []
+        for arg in node.args:
+            if isinstance(arg, ast.Constant):
+                # Already a literal (str, int, float, bool, None), so keep it
+                new_args.append(arg)
+            else:
+                # Convert the entire node to a string constant
+                source_text = ast.unparse(self.visit(arg))
+                new_args.append(ast.Constant(value=source_text))
+        node.args = new_args
+
+        # Transform each keyword argument's value
+        for kw in node.keywords:
+            if kw.arg is not None:  # skip **kwargs, if any
+                if isinstance(kw.value, ast.Constant):
+                    # Already a literal
+                    continue
+                else:
+                    source_text = ast.unparse(self.visit(kw.value))
+                    kw.value = ast.Constant(value=source_text)
+
+        return node
+
+
+def automatically_quote_call_args(expr: str) -> str:
+    """
+    1) Parse expr as an AST in 'eval' mode.
+    2) Transform all call arguments (positional & keyword) into string constants
+       unless they're already constants.
+    3) Return unparsed code.
+    """
+    try:
+        tree = ast.parse(expr, mode="eval")
+    except SyntaxError:
+        # If not valid Python expression, just return as is (or handle differently)
+        return expr
+
+    transformed_tree = ForceArgTextToString().visit(tree)
+
+    # Return code re-generated from the modified AST
+    return ast.unparse(transformed_tree)
+
+
+# -----------------------
+# 3) The final parse_action function
+# -----------------------
+
+
 def parse_action(action_str: str) -> Optional[Action]:
     """
-    Parse a string command into an Action object using Python's AST for robust argument parsing.
-
-    Examples that should parse correctly:
-    - send_mail_to("bob@example.com", "Hello")
-    - func("a", 1, "b")
-    - func('a', 1, 'b')
-    - func("a", 1, arg3="b")
-    - func(arg1="a", arg2=1, arg3="b")
-    - And other variations (commas inside strings, etc.)
+    Attempts to parse a string command into an Action.
+    1) First, auto-quote all non-literal arguments (using ForceArgTextToString).
+    2) Then parse again for real.
+    3) Instantiate the corresponding Action if recognized, else NoActionAfterParsing().
     """
 
-    # Map action names to their corresponding classes
+    # STEP A: Automatically fix unquoted expressions in arguments
+    action_str = automatically_quote_call_args(action_str)
+    action_str = action_str.strip()
+
+    # Our action map
     action_map = {
         "check_mailbox": CheckMailBox,
         "read_mail": ReadMail,
@@ -336,70 +400,55 @@ def parse_action(action_str: str) -> Optional[Action]:
         "set_task_as_completed": SetTaskAsCompleted,
     }
 
-    # Trim leading/trailing whitespace
-    action_str = action_str.strip()
-
-    # Step 1: Try to parse as a Python expression
+    # STEP B: Parse the transformed input as a Python expression
     try:
         tree = ast.parse(action_str, mode="eval")
     except SyntaxError:
-        # If it's not valid Python, we cannot parse
         return NoActionAfterParsing()
 
-    # We expect a single expression that is a function call
+    # Must be a single expression that is a function call
     if not isinstance(tree.body, ast.Call):
         return NoActionAfterParsing()
 
     call_node = tree.body
 
-    # Extract the function name from the call
-    # e.g. if we have something like: send_mail_to(...)
-    # then call_node.func should be ast.Name(id='send_mail_to')
+    # Extract the function name
     if not isinstance(call_node.func, ast.Name):
         return NoActionAfterParsing()
 
     action_name = call_node.func.id
 
-    # Step 2: Gather positional and keyword arguments separately
-    # Positional args (call_node.args) are a list, keyword args (call_node.keywords) are in call_node.keywords
+    # Gather positional args
     positional_args = []
-    keyword_args = {}
-
-    # Handle each positional argument
     for arg_ast in call_node.args:
-        # For simplicity, only allow constants like int, str, etc.
-        # If you want to allow more complex Python expressions, handle them here
         if isinstance(arg_ast, ast.Constant):
             positional_args.append(arg_ast.value)
         else:
-            # If it's something else (e.g. a variable reference), you decide what to do
+            # Unexpected (shouldn't happen if auto-quoting worked)
             return NoActionAfterParsing()
 
-    # Handle each keyword argument
+    # Gather keyword args
+    keyword_args = {}
     for kw_ast in call_node.keywords:
-        # Make sure the keyword has a name
         if kw_ast.arg is None:
-            # This might be something like *args or **kwargs, which we don't handle
+            # Possibly **kwargs, not handled
             return NoActionAfterParsing()
-
-        # Again, only allow constants for simplicity
         if isinstance(kw_ast.value, ast.Constant):
             keyword_args[kw_ast.arg] = kw_ast.value.value
         else:
             return NoActionAfterParsing()
 
-    # Step 3: Look up the action class and build an instance
+    # Check if we know this action
     if action_name not in action_map:
         return NoActionAfterParsing()
 
     action_class = action_map[action_name]
 
-    # We attempt to instantiate the Action with the parsed args
-    # If the signature doesn't match, we catch the exception and return NoActionAfterParsing
+    # Attempt to instantiate the Action
     try:
-        # e.g. SendEmail(agent_mail, target_mail, content)
         return action_class(*positional_args, **keyword_args)
     except Exception:
+        # If the signature doesn't match or some other error
         return NoActionAfterParsing()
 
 
